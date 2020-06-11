@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*ben ekledim*/
+
+img{
+  /*height: 100%;*/
+  /*max-width: 100%;
+  object-fit: cover;*/
+  /*max-height:200px;  max-width:200px;*/
+}
