@@ -4,7 +4,7 @@ export default class index extends Component {
   render() {
     return (
       <div className="col-lg-6">
-        <div className="review_box">
+        <div className="review_box"> 
           <h4>Add a Review</h4>
           <p>Your Rating:</p>
           <ul className="list">
@@ -15,7 +15,7 @@ export default class index extends Component {
             </li>
             <li>
               <a href="#">
-                <i className="fa fa-star" />
+                <i className="fa fa-star" /> 
               </a>
             </li>
             <li>

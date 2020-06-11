@@ -61,6 +61,7 @@ $(document).ready(function(){
     /*=================================
     Javascript for product area carousel
     ==================================*/
+    /* ben 
     $(".active-product-area").owlCarousel({
         items:1,
         autoplay:false,
@@ -70,10 +71,11 @@ $(document).ready(function(){
         navText:["<img src='img/product/prev.png'>","<img src='img/product/next.png'>"],
         dots:false
     });
-
+*/
     /*=================================
     Javascript for single product area carousel
     ==================================*/
+   
     $(".s_Product_carousel").owlCarousel({
       items:1,
       autoplay:false,
@@ -86,6 +88,7 @@ $(document).ready(function(){
     /*=================================
     Javascript for exclusive area carousel
     ==================================*/
+   
     $(".active-exclusive-product-slider").owlCarousel({
         items:1,
         autoplay:false,

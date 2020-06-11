@@ -55,7 +55,7 @@ class index extends Component {
               >
                 <ul className="nav navbar-nav menu_nav ml-auto">
                   <li className="nav-item active">
-                    <Link className="nav-link" to="home">
+                    <Link className="nav-link" to="/home">
                       Anasayfa
                     </Link>
                   </li>
@@ -76,14 +76,14 @@ class index extends Component {
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="contact">
+                    <Link className="nav-link" to="/contact">
                       İletişim
                     </Link>
                   </li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li className="nav-item">
-                    <Link to="login" className="cart">
+                    <Link to="/login" className="cart">
                       <span className="ti-user" />
                     </Link>
                   </li>

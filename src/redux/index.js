@@ -3,12 +3,16 @@ import { combineReducers } from "redux";
 import CategoryReducer from "./category/categoryReducer"
 
 
-//Product
+//ProductCart
 import ProductCartReducer from "./product-cart/productCartReducer"
+
+//Product
+import ProductReducer from "./product/productReducer"
 
 const rootReducer = combineReducers({
     CategoryReducer,
-    ProductCartReducer
+    ProductCartReducer,
+    ProductReducer
 });
 
 export default rootReducer;

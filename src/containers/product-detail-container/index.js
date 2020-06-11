@@ -24,10 +24,12 @@ export default class index extends Component {
                 </nav>
               </div>
             </div>
-          </div>
+          </div> 
         </section>
-        <ProductDetail />
-        <CommentContainer/>
+       
+       
+        <ProductDetail productId={this.props.match.params.productId} />
+     
       </div>
     );
   }

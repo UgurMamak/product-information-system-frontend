@@ -1,9 +1,35 @@
 import React, { Component } from "react";
+import { API } from "../../../helpers/api-config";
+
 //component
 import CommentAdd from "../comment-add";
+import ComemntLike from "../comment-like";
+//import Pagination from "../../components/paginiton/Paginition";
 
 export default class index extends Component {
   render() {
+    const commentList = [];
+    const item = this.props.comment.map((comment) =>
+      commentList.push(
+        <div className="review_item" key={comment.id}>
+          <div className="media">
+            <div className="d-flex">
+              <img
+                className="media-object"
+                src={API + "userImage/" + comment.imageName}
+                alt=""
+              />
+            </div>
+            <div className="media-body">
+              <ComemntLike />
+              <h4>{comment.firstName + " " + comment.lastName}</h4>
+            </div>
+          </div>
+          <p>{comment.content}</p>
+        </div>
+      )
+    );
+
     return (
       <div className="col-lg-6">
         <div className="row total_rate">
@@ -13,125 +39,19 @@ export default class index extends Component {
               <h4>4.0</h4>
               <h6>(03 Reviews)</h6>
             </div>
-          </div>
+          </div> 
+
           <div className="col-6">
             <div className="rating_list">
               <h3>Based on 3 Reviews</h3>
-              <ul className="list">
-                <li>
-                  <a href="#">
-                    5 Star <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" /> 01
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    4 Star <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" /> 01
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    3 Star <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" /> 01
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    2 Star <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" /> 01
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    1 Star <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" />
-                    <i className="fa fa-star" /> 01
-                  </a>
-                </li>
-              </ul>
+              <ul className="list">Puan verme butonu burda olsun</ul>
             </div>
           </div>
-        </div>
-        <div className="review_list">
-          <div className="review_item">
-            <div className="media">
-              <div className="d-flex">
-                <img src="img/product/review-1.png" alt="" />
-              </div>
-              <div className="media-body">
-                <h4>Blake Ruiz</h4>
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo
-            </p>
-          </div>
-          <div className="review_item">
-            <div className="media">
-              <div className="d-flex">
-                <img src="img/product/review-2.png" alt="" />
-              </div>
-              <div className="media-body">
-                <h4>Blake Ruiz</h4>
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo
-            </p>
-          </div>
-          <div className="review_item">
-            <div className="media">
-              <div className="d-flex">
-                <img src="img/product/review-3.png" alt="" />
-              </div>
-              <div className="media-body">
-                <h4>Blake Ruiz</h4>
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-                <i className="fa fa-star" />
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo
-            </p>
-          </div>
-        </div>
+        </div> 
+        <br/><br/>
+     
+
+        <div className="review_list">{commentList}</div>
       </div>
     );
   }

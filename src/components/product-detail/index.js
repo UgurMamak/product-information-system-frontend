@@ -1,51 +1,58 @@
 import React, { Component } from "react";
-
-export default class index extends Component {
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+//actions
+import * as productActions from "../../redux/product/productActions";
+//components
+import Image from "./image";
+//containers
+import CommentContainer from "../../containers/comment-container";
+class index extends Component {
+  componentDidMount() {
+    this.props.actions.getProduct(this.props.productId);
+  }
   render() {
     return (
-      <div className="product_image_area">
-        <div className="container">
-          <div className="row s_product_inner">
-            <div className="col-lg-6">
-              <div className="s_Product_carousel">
-                <div className="single-prd-item">
-                  <img
-                    className="img-fluid"
-                    src={require("../../img/category/s-p1.jpg")}
-                    alt=""
-                  />
-                </div>
-                <div className="single-prd-item">
-                  <img
-                    className="img-fluid"
-                    src={require("../../img/category/s-p1.jpg")}
-                    alt=""
-                  />
-                </div>
-                <div className="single-prd-item">
-                  <img
-                    className="img-fluid"
-                    src={require("../../img/category/s-p1.jpg")}
-                    alt=""
-                  />
+      <div>
+        {this.props.productReducer.productDetail.map((product) => (
+          <div key={product.productId}>
+            <div className="product_image_area">
+              <div className="container">
+                {console.log("deyta", this.props.productReducer.productDetail)}
+                <div className="row s_product_inner">
+                  <div className="col-lg-6">
+                    <Image image={product.productImageListDtos} />
+                  </div>
+                  <div className="col-lg-5 offset-lg-1">
+                    <div className="s_product_text">
+                      <h3>{product.productName}</h3>
+                      <p>{product.content}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="col-lg-5 offset-lg-1">
-              <div className="s_product_text">
-                <h3>Faded SkyBlu Denim Jeans</h3>
-                <p>
-                  Mill Oil is an innovative oil filled radiator with the most
-                  modern technology. If you are looking for something that can
-                  make your interior look awesome, and at the same time give you
-                  the pleasant warm feeling during the winter.
-                </p>
-              </div>
-            </div>
+         
+            <CommentContainer comment={product.commentDtos} />
           </div>
-        </div>
+        ))}
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    productReducer: state.ProductReducer,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      getProduct: bindActionCreators(productActions.getProductDetail, dispatch),
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(index);

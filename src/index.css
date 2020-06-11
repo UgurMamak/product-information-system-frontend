@@ -20,3 +20,11 @@ img{
   object-fit: cover;*/
   /*max-height:200px;  max-width:200px;*/
 }
+
+.media-object {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  position: relative;
+  z-index: 20;
+} 

@@ -8,19 +8,33 @@ import * as productCartActions from "../../redux/product-cart/productCartActions
 
 //component
 import PopularCart from "../../components/popular-product-cart";
+import ProductCart from "../../components/product-cart";
+import Pagination from "../../components/paginiton/Paginition";
 
 import Deneme from "./Deneme";
 
 class index extends Component {
+  constructor() {
+    super();
+    this.state = {
+      pageOfItems: [],
+    };
+    this.onChangePage = this.onChangePage.bind(this);
+  }
   componentDidMount() {
     this.props.actions.getPopularCart();
+  }
+  onChangePage(pageOfItems) {
+    this.setState({ pageOfItems: pageOfItems });
   }
   render() {
     const popularList = [];
     const popularList2 = [];
     let sayac = 0;
-
+    const productcart = [];
     const item = this.props.popularlist.popularProduct.map((product) => {
+      productcart.push(<ProductCart key={product.productId} />);
+
       if (sayac < 4) {
         if (sayac === 0 || sayac === 3) {
           popularList.push(
@@ -31,7 +45,7 @@ class index extends Component {
           sayac++;
         } else if (sayac === 1 || sayac === 2) {
           popularList.push(
-            <div  key={product.productId} className="col-lg-4 col-md-4">
+            <div key={product.productId} className="col-lg-4 col-md-4">
               <PopularCart product={product} boyut={"184px"} />
             </div>
           );
@@ -39,8 +53,8 @@ class index extends Component {
         }
       } else if (sayac === 4) {
         popularList2.push(
-          <div  key={product.productId} className="col-lg-4 col-md-6">
-            <PopularCart  product={product} boyut={"400px"} />
+          <div key={product.productId} className="col-lg-4 col-md-6">
+            <PopularCart product={product} boyut={"400px"} />
           </div>
         );
         sayac++;
@@ -49,7 +63,7 @@ class index extends Component {
 
     return (
       <div>
-        {console.log("fsh",this.props.popularlist.popularProduct)}
+        {console.log("fsh", this.props.popularlist.popularProduct)}
         <section className="banner-area organic-breadcrumb">
           <div className="container">
             <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -57,15 +71,6 @@ class index extends Component {
             </div>
           </div>
         </section>
-
-        <br />
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
 
         <section className="category-area">
           <div className="container">
@@ -80,128 +85,30 @@ class index extends Component {
                 <div className="row">{popularList}</div>
               </div>
               {popularList2}
+            </div>
+          </div>
+        </section>
 
-              <div className="col-lg-8 col-md-12">
-                <div className="row">
-                  <div className="col-lg-8 col-md-8">
-                    <div className="single-deal">
-                      <div className="overlay" />
-
-                      <img
-                        className="img-fluid w-100"
-                        src={require("../../img/product/kulaklık.jpg")}
-                        alt=""
-                      />
-
-                      {/*<Link to="img/category/c1.jpg" className="img-pop-up" target="_blank">*/}
-                      <div className="deal-details">
-                        <h6 className="deal-title">
-                          <ul className="blog_meta list">
-                            <li>
-                              <Link to="/">
-                                {" "}
-                                Uğur Mamak <i className="lnr lnr-user"></i>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/">
-                                4,2 puan<i className="lnr lnr-star"></i>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/">
-                                1.2M Beğeni<i className="lnr lnr-heart"></i>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/">
-                                6 Yorum<i className="lnr lnr-bubble"></i>
-                              </Link>
-                            </li>
-                          </ul>
-                        </h6>
-                      </div>
-                      {/*</Link>*/}
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-4">
-                    <div className="single-deal">
-                      <div className="overlay" />
-                      <img
-                        className="img-fluid w-100"
-                        src={require("../../img/product/telefon.jpg")}
-                        alt=""
-                      />
-                      <a
-                        href="img/category/c2.jpg"
-                        className="img-pop-up"
-                        target="_blank"
-                      >
-                        <div className="deal-details">
-                          <h6 className="deal-title">Sneaker for Sports</h6>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-4">
-                    <div className="single-deal">
-                      <div className="overlay" />
-                      <img
-                        className="img-fluid w-100"
-                        src={require("../../img/category/c3.jpg")}
-                        alt=""
-                      />
-                      <a
-                        href="img/category/c3.jpg"
-                        className="img-pop-up"
-                        target="_blank"
-                      >
-                        <div className="deal-details">
-                          <h6 className="deal-title">Product for Couple</h6>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-lg-8 col-md-8">
-                    <div className="single-deal">
-                      <div className="overlay" />
-                      <img
-                        className="img-fluid w-100"
-                        src={require("../../img/category/c4.jpg")}
-                        alt=""
-                      />
-                      <a
-                        href="img/category/c4.jpg"
-                        className="img-pop-up"
-                        target="_blank"
-                      >
-                        <div className="deal-details">
-                          <h6 className="deal-title">Sneaker for Sports</h6>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
+        <section className="active-product-area section_gap">
+          {/* single product slide */}
+          <div className="single-product-slider">
+            <div className="row justify-content-center">
+              <div className="col-lg-6 text-center">
+                <div className="section-title">
+                  <Pagination
+                    //items={this.state.exampleItems}
+                    items={this.props.popularlist.popularProduct}
+                    onChangePage={this.onChangePage}
+                  /> 
                 </div>
               </div>
-
-              <div className="col-lg-4 col-md-6">
-                <div className="single-deal">
-                  <div className="overlay" />
-                  <img
-                    className="img-fluid w-100"
-                    src={require("../../img/product/ruj.jpg")}
-                    alt=""
-                  />
-                  <a
-                    href="img/category/c45.jpg"
-                    className="img-pop-up"
-                    target="_blank"
-                  >
-                    <div className="deal-details">
-                      <h6 className="deal-title">denememmememememe</h6>
-                    </div>
-                  </a>
-                </div>
+            </div>
+            <div className="container">
+              <div className="row">
+                {/*productcart*/}
+                {this.state.pageOfItems.map((product) => (
+                  <ProductCart key={product.productId} product={product} />
+                ))}
               </div>
             </div>
           </div>

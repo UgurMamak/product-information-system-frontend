@@ -3,7 +3,20 @@ import React, { Component } from "react";
 //component
 import CommentList from "../../components/comment/comment-list";
 import CommentAdd from "../../components/comment/comment-add";
+import Pagination from "../../components/paginiton/Paginition";
 export default class index extends Component {
+  constructor() {
+    super();
+    this.state = {
+      pageOfItems: [],
+    };
+    this.onChangePage = this.onChangePage.bind(this);
+  }
+
+  onChangePage(pageOfItems) {
+    this.setState({ pageOfItems: pageOfItems });
+  }
+
   render() {
     return (
       <div>
@@ -21,46 +34,7 @@ export default class index extends Component {
                     aria-controls="home"
                     aria-selected="true"
                   >
-                    Description
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >
-                    Specification
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="contact-tab"
-                    data-toggle="tab"
-                    href="#contact"
-                    role="tab"
-                    aria-controls="contact"
-                    aria-selected="false"
-                  >
-                    Comments
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link active"
-                    id="review-tab"
-                    data-toggle="tab"
-                    href="#review"
-                    role="tab"
-                    aria-controls="review"
-                    aria-selected="false"
-                  >
-                    Reviews
+                    Yorumlar
                   </a>
                 </li>
               </ul>
@@ -73,8 +47,13 @@ export default class index extends Component {
               >
                 <br />
                 <div className="row">
-                  <CommentList />
+                  <CommentList comment={this.state.pageOfItems} />
+
                   <CommentAdd />
+                  <Pagination
+                    items={this.props.comment}
+                    onChangePage={this.onChangePage}
+                  />
                 </div>
               </div>
             </div>
