@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 //component
 import CommentList from "../../components/comment/comment-list";
 import CommentAdd from "../../components/comment/comment-add";
 import Pagination from "../../components/paginiton/Paginition";
-export default class index extends Component {
+
+class index extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,44 +25,81 @@ export default class index extends Component {
       <div>
         <section className="product_description_area">
           <div className="container">
-            <div className="tab-content" id="myTabContent">
-              <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="home-tab"
-                    data-toggle="tab"
-                    href="#home"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >
-                    Yorumlar
-                  </a>
-                </li>
-              </ul>
-
+            <ul className="nav nav-tabs" id="myTab" role="tablist">
+              <li className="nav-item">
+                <a
+                  className="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Yorumlar
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                >
+                  Yorum Ekle
+                </a>
+              </li>
+            </ul>
+            {this.props.productReducer.productDetail.map((comment) => (
               <div
-                className="tab-pane fade show active"
-                id="review"
-                role="tabpanel"
-                aria-labelledby="review-tab"
+                className="tab-content"
+                id="myTabContent"
+                key={comment.productId}
               >
-                <br />
-                <div className="row">
-                  <CommentList comment={this.state.pageOfItems} />
+                <div
+                  className="tab-pane fade show active"
+                  id="home"
+                  role="tabpanel"
+                  aria-labelledby="home-tab"
+                >
+                  <br />
 
-                  <CommentAdd />
+                  <div className="row">
+                    <CommentList
+                      productPoint={this.props.productPoint}
+                      comment={this.state.pageOfItems}
+                      productId={comment.productId}
+                    />
+                  </div>
                   <Pagination
-                    items={this.props.comment}
+                    items={comment.commentDtos}
                     onChangePage={this.onChangePage}
                   />
                 </div>
+
+                <div
+                  className="tab-pane fade"
+                  id="profile"
+                  role="tabpanel"
+                  aria-labelledby="profile-tab"
+                >
+                  <CommentAdd productId={comment.productId} />
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </section>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    productReducer: state.ProductReducer,
+  };
+}
+
+export default connect(mapStateToProps, null)(index);

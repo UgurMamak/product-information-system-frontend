@@ -33,7 +33,7 @@ class index extends Component {
               </div>
             </div>
          
-            <CommentContainer comment={product.commentDtos} />
+            <CommentContainer comment={product.commentDtos} productPoint={product.productPoint} />
           </div>
         ))}
       </div>

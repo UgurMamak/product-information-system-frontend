@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { API } from "../../../helpers/api-config";
-
+import { connect } from "react-redux";
 //component
-import CommentAdd from "../comment-add";
-import ComemntLike from "../comment-like";
-//import Pagination from "../../components/paginiton/Paginition";
-
-export default class index extends Component {
+import CommentLike from "../comment-like";
+import ProductPoint from "../../product-point";
+import PointShow from "../../product-point/point-show";
+class index extends Component {
   render() {
     const commentList = [];
     const item = this.props.comment.map((comment) =>
@@ -21,38 +20,51 @@ export default class index extends Component {
               />
             </div>
             <div className="media-body">
-              <ComemntLike />
               <h4>{comment.firstName + " " + comment.lastName}</h4>
+              {comment.created}
+
+              <div className="like_btn">
+                <CommentLike
+                  productId={this.props.productId}
+                  commentId={comment.id}
+                  trueNumber={comment.trueNumber}
+                  falseNumber={comment.falseNumber}
+                />
+              </div>
             </div>
           </div>
+
           <p>{comment.content}</p>
+          <hr />
         </div>
       )
     );
 
     return (
-      <div className="col-lg-6">
+      <div className="col-lg-12">
         <div className="row total_rate">
-          <div className="col-6">
-            <div className="box_total">
-              <h5>Overall</h5>
-              <h4>4.0</h4>
-              <h6>(03 Reviews)</h6>
-            </div>
-          </div> 
+          <PointShow productId={this.props.productId} />
 
           <div className="col-6">
             <div className="rating_list">
-              <h3>Based on 3 Reviews</h3>
-              <ul className="list">Puan verme butonu burda olsun</ul>
+              <h3>Ürüne Puan Ver</h3>
+              <ProductPoint
+                handlePoint={this.handlePoint}
+                productId={this.props.productId}
+              />
             </div>
           </div>
-        </div> 
-        <br/><br/>
-     
-
+        </div>
+        <br />
+        <br />
         <div className="review_list">{commentList}</div>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    productReducer: state.ProductReducer,
+  };
+}
+export default connect(mapStateToProps, null)(index);
