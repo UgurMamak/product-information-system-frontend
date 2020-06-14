@@ -23,6 +23,9 @@ import ProductTypeReducer from "./product-type/productTypeReducer"
 import LoginReducer from "./user/loginReducer"
 import RegisterReducer from "./user/registerReducer"
 
+//User
+import UserReducer from "./user/userReducer"
+
 const rootReducer = combineReducers({
     CategoryReducer,
     ProductCartReducer,
@@ -32,7 +35,8 @@ const rootReducer = combineReducers({
     CommentLikeReducer,
     ProductTypeReducer,
     LoginReducer,
-    RegisterReducer
+    RegisterReducer,
+    UserReducer
    
 });
 

@@ -8,10 +8,15 @@ const GET_POPULARCART_FAIL = "GET_POPULARCART_FAIL";
 const GET_PRODUCTCART_SUCCESS = "GET_PRODUCTCART_SUCCESS";
 const GET_PRODUCTCART_FAIL = "GET_PRODUCTCART_FAIL";
 
+
+const GET_USERCART_SUCCESS = "GET_USERCART_SUCCESS";
+
+
 export const actionTypes = {
   GET_POPULARCART_SUCCESS,
   GET_POPULARCART_FAIL,
   GET_PRODUCTCART_SUCCESS,
+  GET_USERCART_SUCCESS
 };
 
 function getPopularCartSuccess(productCart) {
@@ -20,6 +25,10 @@ function getPopularCartSuccess(productCart) {
 
 function getProductCartSuccess(productCart) {
   return { type: actionTypes.GET_PRODUCTCART_SUCCESS, payload: productCart };
+}
+
+function getUserCartSuccess(productCart) {
+  return { type: actionTypes.GET_USERCART_SUCCESS, payload: productCart };
 }
 
 //Tüm kategorileri çeker
@@ -60,9 +69,7 @@ export function getProductCart(categoryId) {
 export function getProductTypeCart(productType) {
   return function (dispatch) {
     let url = API;
-
     url = url + "product/gettypecart";
-    console.log("ptip ifine girdi");
     axios
       .post(url, productType, { headers: { "Content-Type": "form-data" } })
       .then((result) => {
@@ -71,5 +78,16 @@ export function getProductTypeCart(productType) {
       .catch((error) => {
         console.log("POPULER PRODUCT CART GELIRKEN HATA", error);
       });
+  };
+}
+
+
+//USER'a ait postlar
+export function getUserCart(userId) {
+  return function (dispatch) {
+    let url = API + "product/getusercart/?userId=" + userId;
+    axios.get(url).then((result) => {
+      dispatch(getUserCartSuccess(result.data));
+    });
   };
 }
