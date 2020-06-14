@@ -8,11 +8,17 @@ const GET_POSTDETAIL_FAIL = "GET_POSTDETAIL_FAIL";
 const CREATE_PRODUCT_SUCCESS = "CREATE_PRODUCT_SUCCESS";
 const CREATE_PRODUCT_FAIL = "CREATE_PRODUCT_FAIL";
 
+const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
+const DELETE_PRODUCT_FAIL = "DELETE_PRODUCT_FAIL";
+
+
 export const actionTypes = {
   GET_PRODUCTDETAIL_SUCCESS,
   GET_POSTDETAIL_FAIL,
   CREATE_PRODUCT_FAIL,
   CREATE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAIL
 };
 
 function getProductDetailSuccess(productDetail) {
@@ -26,12 +32,20 @@ function getProductDetailFail(productDetail) {
   return { type: actionTypes.GET_POSTDETAIL_FAIL, payload: productDetail };
 }
 
-export function createProductSuccess(post) {
-  return { type: actionTypes.CREATE_PRODUCT_SUCCESS, payload: post };
+export function createProductSuccess(product) {
+  return { type: actionTypes.CREATE_PRODUCT_SUCCESS, payload: product };
 }
 
-export function createProductFail(post) {
-  return { type: actionTypes.CREATE_PRODUCT_FAIL, payload: post };
+export function createProductFail(product ) {
+  return { type: actionTypes.CREATE_PRODUCT_FAIL, payload: product  };
+}
+
+export function deleteProductSuccess(product) {
+  return { type: actionTypes.DELETE_PRODUCT_SUCCESS, payload:product };
+}
+
+export function deleteProductFail(product) {
+  return { type: actionTypes.DELETE_PRODUCT_FAIL, payload: product };
 }
 
 export function getProductDetail(productId) {
@@ -49,6 +63,7 @@ export function getProductDetail(productId) {
   };
 }
 
+//Ürün ekleme
 export function createProduct(post) {
   return function (dispatch) {
     let url = API + "product/add";
@@ -61,6 +76,24 @@ export function createProduct(post) {
       .catch((error) => {
         console.log("PRODUCT EKLERKEN HATA");
         dispatch(createProductFail(error.response.data));
+      });
+  };
+}
+
+//ürün silme
+export function deleteProduct(product) {
+  return function (dispatch) {
+    let url = API + "product/delete";
+    axios
+      .post(url, product)
+      .then((response) => response.data)
+      .then((result) => {
+        dispatch(deleteProductSuccess(result));
+      })
+      .catch((error) => {
+        if (error.response.data.status)
+          dispatch(deleteProductFail("BİLİNMEYEN HATA OLUŞTU"));
+        else dispatch(deleteProductFail(error.response.data));
       });
   };
 }

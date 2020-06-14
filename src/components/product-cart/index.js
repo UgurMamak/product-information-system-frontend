@@ -7,7 +7,7 @@ export default class index extends Component {
    
         <div className="single-product">
           <div className="overlay" />
-          <a href={"productDetail/" + this.props.product.productId}>
+          <a href={"/productDetail/" + this.props.product.productId}>
           {this.props.product.productImageListDtos.slice(0, 1).map((image) => (
             <img
               key={image.id}
@@ -22,14 +22,14 @@ export default class index extends Component {
             <h6>{this.props.product.productName}</h6>
 
             <div className="prd-bottom">
-              <a href="/" className="social-info">
+              <Link to={"/profile/"+this.props.product.userId} className="social-info">
                 <span className="ti-user" />
                 <p className="hover-text">
                   {this.props.product.firstName +
                     " " +
                     this.props.product.lastName}
                 </p>
-              </a>
+              </Link>
               <a href="/" className="social-info">
                 <span className="lnr lnr-heart" />
                 <p className="hover-text">Beğenme sayısı</p>
@@ -48,8 +48,7 @@ export default class index extends Component {
               </a>
             </div>
           </div>
-        </div>
-    
+        </div>  
     );
   }
 }

@@ -21,6 +21,7 @@ import UserProfileContainer from "./containers/user-profile-container"
 
 //component
 import ProductAdd from "./components/product-add"
+import Deneme from "./components/deneme/"
 
 export default class App extends Component {
   render() {
@@ -38,6 +39,7 @@ export default class App extends Component {
         <Route exact path="/category/:categoryId" component={CategoryContainer}/>
         <Route exact path="/profile/:userId" component={UserProfileContainer}/>
         <Route exact path="/productAdd" component={ProductAdd}/>
+        <Route exact path="/deneme" component={Deneme}/>
         </Switch>
         <FooterContainer/>
       </div>

@@ -32,7 +32,7 @@ class userinfo extends Component {
               </div>
             </div>
           </div>
-        ))}
+        ))}<br/><br/><br/>
       </div>
     );
   }
