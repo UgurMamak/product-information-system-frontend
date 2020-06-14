@@ -21,7 +21,7 @@ img{
   /*max-height:200px;  max-width:200px;*/
 }
 
-.media-object {
+.media-object { 
   width: 60px;
   height: 60px;
   border-radius: 30px;
@@ -39,4 +39,6 @@ img{
   right: 0px;
   top: 20px;
   @icnlude transition; }
+  
+
   

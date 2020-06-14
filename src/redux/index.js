@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 //Category
 import CategoryReducer from "./category/categoryReducer"
 
-
 //ProductCart
 import ProductCartReducer from "./product-cart/productCartReducer"
 //Comment
@@ -17,6 +16,12 @@ import ProductReducer from "./product/productReducer"
 //ProductPoint
 import ProductPointReducer from "./product-point/productPointReducer"
 
+//ProductType
+import ProductTypeReducer from "./product-type/productTypeReducer"
+
+//Login
+import LoginReducer from "./user/loginReducer"
+import RegisterReducer from "./user/registerReducer"
 
 const rootReducer = combineReducers({
     CategoryReducer,
@@ -24,7 +29,10 @@ const rootReducer = combineReducers({
     ProductReducer,
     CommentReducer,
     ProductPointReducer,
-    CommentLikeReducer
+    CommentLikeReducer,
+    ProductTypeReducer,
+    LoginReducer,
+    RegisterReducer
    
 });
 

@@ -74,7 +74,7 @@ class index extends Component {
                       productId={comment.productId}
                     />
                   </div>
-                  <Pagination
+                  <Pagination 
                     items={comment.commentDtos}
                     onChangePage={this.onChangePage}
                   />
@@ -85,7 +85,7 @@ class index extends Component {
                   id="profile"
                   role="tabpanel"
                   aria-labelledby="profile-tab"
-                >
+                >                
                   <CommentAdd productId={comment.productId} />
                 </div>
               </div>

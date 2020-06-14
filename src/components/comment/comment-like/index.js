@@ -4,6 +4,7 @@ import DislikeIcon from "@material-ui/icons/ThumbDownAltOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import alertify from "alertifyjs";
 import * as CommentLikeActions from "../../../redux/comment-like/commentLikeActions";
 import * as ProductActions from "../../../redux/product/productActions"
 class index extends Component {
@@ -18,9 +19,8 @@ class index extends Component {
       userId: "c5638364-e55b-433b-b84e-3ba26cf9fe38",
       likeStatus: false,
     });
-  // await this.props.actions.getProduct(this.props.productId);
    console.log("like tıklandı");
-  };
+  }; 
 
   handleLike = async (event) => {
   await  this.props.actions.addCommentLike({
@@ -28,9 +28,9 @@ class index extends Component {
       userId: "c5638364-e55b-433b-b84e-3ba26cf9fe38",
       likeStatus: true,
     });
-  // await this.props.actions.getProduct(this.props.productId);
   };
 
+  //state ve props değişimde çalışır.
   async componentWillUpdate()
   {
     await this.props.actions.getProduct(this.props.productId);
@@ -39,8 +39,6 @@ class index extends Component {
   render() {
     return (
       <div>
-       
-    
         <IconButton
           onClick={this.handleLike}
           color="secondary"

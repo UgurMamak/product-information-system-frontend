@@ -47,7 +47,7 @@ class index extends Component {
 
   render() {
     return (
-      <div className="col-lg-6"> 
+      <div className="col-lg-12" > 
         <div className="review_box">
           <h4>Yorum Ekle</h4>
           <p>Your Rating:</p>

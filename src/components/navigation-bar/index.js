@@ -60,21 +60,13 @@ class index extends Component {
                     </Link>
                   </li>
 
-                  <li className="nav-item submenu dropdown">
-                    <a
-                      href="/"
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/category">
                       Kategoriler
-                    </a>
-                    <ul className="dropdown-menu">
-                     {categoriesList}
-                    </ul>
+                    </Link>
                   </li>
+
+                  
                   <li className="nav-item">
                     <Link className="nav-link" to="/contact">
                       İletişim

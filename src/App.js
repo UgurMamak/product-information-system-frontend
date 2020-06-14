@@ -15,6 +15,12 @@ import HomeContainer from "./containers/home-container"
 import ContactContainer from "./containers/contact-container"
 import FooterContainer from "./containers/footer-container"
 import ProductDetailContainer from "./containers/product-detail-container/"
+import CategoryContainer from "./containers/category-container"
+import UserProfileContainer from "./containers/user-profile-container"
+
+
+//component
+import ProductAdd from "./components/product-add"
 
 export default class App extends Component {
   render() {
@@ -27,6 +33,11 @@ export default class App extends Component {
         <Route path="/login" component={LoginRegisterContainer} />
         <Route path="/contact" component={ContactContainer} />
         <Route path="/productDetail/:productId" component={ProductDetailContainer} />
+        
+        <Route exact path="/category" component={CategoryContainer}/>
+        <Route exact path="/category/:categoryId" component={CategoryContainer}/>
+        <Route exact path="/profile/:userId" component={UserProfileContainer}/>
+        <Route exact path="/productAdd" component={ProductAdd}/>
         </Switch>
         <FooterContainer/>
       </div>

@@ -80,7 +80,6 @@ class index extends Component {
                   <h1>En Popüler Ürünler</h1>
                 </div>
               </div>
-
               <div className="col-lg-8 col-md-12">
                 <div className="row">{popularList}</div>
               </div>
@@ -99,7 +98,7 @@ class index extends Component {
                     //items={this.state.exampleItems}
                     items={this.props.popularlist.popularProduct}
                     onChangePage={this.onChangePage}
-                  /> 
+                  />
                 </div>
               </div>
             </div>
@@ -107,7 +106,9 @@ class index extends Component {
               <div className="row">
                 {/*productcart*/}
                 {this.state.pageOfItems.map((product) => (
-                  <ProductCart key={product.productId} product={product} />
+                  <div className="col-lg-3 col-md-6" key={product.productId}>
+                    <ProductCart product={product} />
+                  </div>
                 ))}
               </div>
             </div>

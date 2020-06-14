@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default class index extends Component {
   render() {
     return (
-      <div className="col-lg-3 col-md-6">
+   
         <div className="single-product">
           <div className="overlay" />
           <a href={"productDetail/" + this.props.product.productId}>
@@ -49,7 +49,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
-      </div>
+    
     );
   }
 }
