@@ -9,7 +9,6 @@ export default class index extends Component {
     this.state = {
       buttonList: [],
       key: 0,
-
       imageFileList: [],
     };
     this.createButton = this.createButton.bind(this);
@@ -19,9 +18,6 @@ export default class index extends Component {
     if (imageInfo.sil === true) 
     {
       console.log("silinecek",imageInfo.name);
-       /* var yeni=this.state.buttonList.map(item=>(
-            item.props.isim!==imageInfo.name
-        ));*/
       var yeni = this.state.buttonList.filter(
         (item) => item.props.isim !== imageInfo.name
       );

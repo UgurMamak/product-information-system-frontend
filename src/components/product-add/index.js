@@ -2,31 +2,89 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import { Button } from "reactstrap";
+import IconButton from "@material-ui/core/IconButton";
+import ImageIcon from "@material-ui/icons/Image";
 //component
-import ImageChoose from "../image-input";
 import TypeSelect from "./type-select";
 import CategoryChecked from "./category-checked";
+import Image from "./image";
 import * as ProductActions from "../../redux/product/productActions";
 class index extends Component {
-  state = {
-    imageFile: null,
-    imagePath: null,
-    productType: "",
-    categories: [],
-    productName: "",
-    content: "",
-    control: false,
-    controlMessage: "",
+  constructor() {
+    super();
+    this.state = {
+      productType: "",
+      categories: [],
+      productName: "",
+      content: "",
+      control: false,
+      controlMessage: "",
+
+      buttonList: [],
+      key: 0,
+      imageFileList: [],
+    };
+    this.createButton = this.createButton.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
+  }
+
+  createButton = async (imageInfo) => {
+    if (imageInfo.sil === true) {
+      console.log("silinecek", imageInfo.name);
+      var yeni = this.state.buttonList.filter(
+        (item) => item.props.isim !== imageInfo.name
+      );
+      this.setState({ buttonList: yeni });
+      console.log("yeni list", yeni);
+    } else {
+      console.log("oluşan", imageInfo);
+      const k = this.state.key + 1;
+
+      this.state.buttonList.push(
+        <Image
+          handleFileUpload={this.handleFileUpload}
+          imageFile={imageInfo.file}
+          imagePath={imageInfo.path}
+          deleteImage={this.deleteImage}
+          isim={imageInfo.file.name}
+          key={k}
+        />
+      );
+      this.setState({
+        key: k,
+      });
+    }
   };
-  componentDidMount() {}
+
+  handleFileUpload = async (event) => {
+    var imgPath = URL.createObjectURL(event.target.files[0]);
+    var imgFile = event.target.files[0];
+    this.state.imageFileList.push(imgFile);
+
+    const imageInfo = {
+      path: imgPath,
+      file: imgFile,
+    };
+    this.createButton(imageInfo);
+  };
+
+  deleteImage = async (event) => {
+    var name = event.target.name;
+    var sonuc = this.state.imageFileList.filter((image) => image.name !== name);
+    this.setState({ imageFileList: sonuc });
+    console.log("name", name);
+    const imageInfo = {
+      sil: true,
+      name: name,
+    };
+    this.createButton(imageInfo);
+  };
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     this.setState({ control: false });
-  };
-  handleFileUpload = async (event, userId) => {
-    this.setState({ imageFile: event.target.files[0] });
-    this.setState({ imagePath: URL.createObjectURL(event.target.files[0]) });
   };
 
   selectType = async (event) => {
@@ -51,14 +109,18 @@ class index extends Component {
       this.state.content &&
       this.state.categories.length !== 0 &&
       this.state.productType !== "" &&
-      this.state.imageFile !== null
+      this.state.imageFileList.length !== 0
     ) {
       const data = new FormData();
       data.append("ProductName", this.state.productName);
       data.append("Content", this.state.content);
       data.append("UserId", localStorage.getItem("userId"));
       data.append("ProductTypeId", this.state.productType);
-      data.append("ProductImages", this.state.imageFile);
+      //data.append("ProductImages", this.state.imageFile);
+
+      for (let i = 0; i < this.state.imageFileList.length; i++) {
+        data.append("ProductImages", this.state.imageFileList[i]);
+      }
       for (let i = 0; i < this.state.categories.length; i++) {
         data.append("Categories", this.state.categories[i]);
       }
@@ -67,10 +129,24 @@ class index extends Component {
       this.setState({ control: true, controlMessage: "Boş Alan Bırakmayınız" });
     }
   };
-
+ 
   render() {
+    const palette= {
+      "color":"orange"
+    }
+    const imageList = [];
+    console.log("butonlst", this.state.buttonList);
+
+    this.state.buttonList.map((image, i) => {
+      imageList.push(
+        <div className="col-lg-4 col-md-6" key={i}>
+          {image}
+        </div>
+      );
+    });
+
     return (
-      <div>
+      <div >
         <section className="banner-area organic-breadcrumb">
           <div className="container">
             <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -81,15 +157,39 @@ class index extends Component {
           </div>
         </section>
 
+        <div className="container">
+          <div className="row">
+     
+            <div className="col-xl-9 col-lg-8 col-md-7">
+              <div>
+                <input
+                  accept="image/*"
+                  id="icon-button-file"
+                  onChange={this.handleFileUpload}
+                  style={{ display: "none" }}
+                  type="file"
+                  className="form-control"
+                />
+                <label htmlFor="icon-button-file">
+                  <IconButton
+                    style={palette}
+                    size="small"
+                    aria-label="upload picture"
+                    component="span"
+                  >
+                    <ImageIcon />
+                    Resim seç
+                  </IconButton>
+                </label>
+              </div>
+              <div className="row">{imageList}</div>
+            </div>
+          </div>
+        </div>
+
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">
-              <ImageChoose
-                handleFileUpload={this.handleFileUpload}
-                imageFile={this.state.imageFile}
-                imagePath={this.state.imagePath}
-              />
-
               <div className="row tracking_form">
                 <div className="col-md-12 form-group">
                   <TypeSelect

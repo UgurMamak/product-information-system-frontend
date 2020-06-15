@@ -5,8 +5,8 @@ const initialState = {
 
   message: "",
   createStatus: -1,
-
   deleteStatus: -1,
+  updateStatus:-1
 };
 export default function ProductReducer(state = initialState, action) {
   switch (action.type) {
@@ -41,7 +41,6 @@ export default function ProductReducer(state = initialState, action) {
         message: action.payload,
         createStatus: 0,
       };
-
     default:
       return state;
   }

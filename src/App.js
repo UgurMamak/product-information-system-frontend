@@ -20,7 +20,9 @@ import UserProfileContainer from "./containers/user-profile-container"
 
 
 //component
+import Notfound from "./components/common/not-found"
 import ProductAdd from "./components/product-add"
+import ProductUpdate from "./components/product-update"
 import Deneme from "./components/deneme/"
 
 export default class App extends Component {
@@ -39,7 +41,9 @@ export default class App extends Component {
         <Route exact path="/category/:categoryId" component={CategoryContainer}/>
         <Route exact path="/profile/:userId" component={UserProfileContainer}/>
         <Route exact path="/productAdd" component={ProductAdd}/>
+        <Route exact path="/productUpdate/:productId" component={ProductUpdate}/>
         <Route exact path="/deneme" component={Deneme}/>
+        <Route component={Notfound} />
         </Switch>
         <FooterContainer/>
       </div>

@@ -26,10 +26,7 @@ export default class index extends Component {
             </div>
           </div> 
         </section>
-       
-       
         <ProductDetail productId={this.props.match.params.productId} />
-     
       </div>
     );
   }

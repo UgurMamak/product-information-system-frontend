@@ -12,13 +12,19 @@ const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
 const DELETE_PRODUCT_FAIL = "DELETE_PRODUCT_FAIL";
 
 
+
+const UPDATE_PRODUCT_SUCCESS = "UPDATE_PRODUCT_SUCCESS";
+const UPDATE_PRODUCT_FAIL = "UPDATE_PRODUCT_FAIL";
+
 export const actionTypes = {
   GET_PRODUCTDETAIL_SUCCESS,
   GET_POSTDETAIL_FAIL,
   CREATE_PRODUCT_FAIL,
   CREATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_FAIL
+  DELETE_PRODUCT_FAIL,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAIL
 };
 
 function getProductDetailSuccess(productDetail) {
@@ -46,6 +52,14 @@ export function deleteProductSuccess(product) {
 
 export function deleteProductFail(product) {
   return { type: actionTypes.DELETE_PRODUCT_FAIL, payload: product };
+}
+
+export function updateProductSuccess(product) {
+  return { type: actionTypes.UPDATE_PRODUCT_SUCCESS, payload:product };
+}
+
+export function updateProductFail(product) {
+  return { type: actionTypes.UPDATE_PRODUCT_FAIL, payload: product };
 }
 
 export function getProductDetail(productId) {
@@ -94,6 +108,24 @@ export function deleteProduct(product) {
         if (error.response.data.status)
           dispatch(deleteProductFail("BİLİNMEYEN HATA OLUŞTU"));
         else dispatch(deleteProductFail(error.response.data));
+      });
+  };
+}
+
+//productUpdate
+export function updateProduct(product) {
+  return function (dispatch) {
+    let url = API + "product/update";
+    axios
+      .post(url, product)
+      .then((response)=>response.data)
+      .then((result)=>{
+        dispatch(updateProductSuccess(result));
+      })
+      .catch((error) => {
+        if (error.response.data.status)
+          dispatch(updateProductFail("BİLİNMEYEN HATA OLUŞTU"));
+        else dispatch(updateProductFail(error.response.data));
       });
   };
 }

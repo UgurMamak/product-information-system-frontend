@@ -12,6 +12,7 @@ import CommentLikeReducer from "./comment-like/commentLikeReducer"
 
 //Product
 import ProductReducer from "./product/productReducer"
+import ProductUpdateReducer from "./product/productUpdateReducer"
 
 //ProductPoint
 import ProductPointReducer from "./product-point/productPointReducer"
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
     ProductTypeReducer,
     LoginReducer,
     RegisterReducer,
-    UserReducer
+    UserReducer,
+    ProductUpdateReducer
    
 });
 
