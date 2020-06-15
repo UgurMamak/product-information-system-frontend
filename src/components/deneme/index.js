@@ -9,28 +9,43 @@ export default class index extends Component {
     this.state = {
       buttonList: [],
       key: 0,
-    
+
       imageFileList: [],
-     
     };
     this.createButton = this.createButton.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
   }
   createButton = async (imageInfo) => {
-    console.log("oluşan", imageInfo);
-    const k = this.state.key + 1;
-    this.state.buttonList.push(
-      <ImageChoose
-        handleFileUpload={this.handleFileUpload}
-        imageFile={imageInfo.file}
-        imagePath={imageInfo.path}
-        deleteImage={this.deleteImage}
-        isim={imageInfo.file.name}
-      />
-    );
-    this.setState({
-      key: k,
-    });
+    if (imageInfo.sil === true) 
+    {
+      console.log("silinecek",imageInfo.name);
+       /* var yeni=this.state.buttonList.map(item=>(
+            item.props.isim!==imageInfo.name
+        ));*/
+      var yeni = this.state.buttonList.filter(
+        (item) => item.props.isim !== imageInfo.name
+      );
+      this.setState({buttonList:yeni});
+      console.log("yeni list", yeni);
+    } 
+    else {
+      console.log("oluşan", imageInfo);
+      const k = this.state.key + 1;
+
+      this.state.buttonList.push(
+        <ImageChoose
+          handleFileUpload={this.handleFileUpload}
+          imageFile={imageInfo.file}
+          imagePath={imageInfo.path}
+          deleteImage={this.deleteImage}
+          isim={imageInfo.file.name}
+          key={k}
+        />
+      );
+      this.setState({
+        key: k,
+      });
+    }
   };
 
   handleFileUpload = async (event) => {
@@ -47,12 +62,25 @@ export default class index extends Component {
 
   deleteImage = async (event) => {
     var name = event.target.name;
+
     var sonuc = this.state.imageFileList.filter((image) => image.name !== name);
     this.setState({ imageFileList: sonuc });
+    console.log("name",name);
+    const imageInfo={
+        sil:true,
+        name:name
+    }
+    this.createButton(imageInfo);
   };
 
   render() {
     const imageList = [];
+    console.log("butonlst", this.state.buttonList);
+
+    this.state.buttonList.map(item=>(console.log("isisisi",item.props.isim)))
+
+
+    console.log("imgFileList", this.state.imageFileList);
     this.state.buttonList.map((image, i) => {
       imageList.push(
         <div className="col-lg-4 col-md-6" key={i}>
@@ -88,7 +116,6 @@ export default class index extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xl-9 col-lg-8 col-md-7">
-    
               <div className="row">{imageList}</div>
             </div>
           </div>
