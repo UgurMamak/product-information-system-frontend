@@ -14,6 +14,7 @@ class TypeAdd extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    this.setState({control:false});
   };
   handleSave = (event) => {
     if (this.state.typeName !== "") {

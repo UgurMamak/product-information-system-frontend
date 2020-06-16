@@ -16,6 +16,9 @@ const RESET_REGISTER = "RESET_REGISTER";
 //USER
 const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 
+const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS"; //güncelleme işlemleri için
+const UPDATE_USER_FAIL = "UPDATE_USER_FAIL"; //güncelleme işlemleri için
+
 export const actionTypes = {
   GET_LOGIN_SUCCESS,
   FAIL_LOGIN,
@@ -23,7 +26,9 @@ export const actionTypes = {
   CREATE_REGISTER_SUCCESS,
   FAIL_REGISTER,
   RESET_REGISTER,
-  GET_USER_SUCCESS
+  GET_USER_SUCCESS,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
 };
 export function loginSuccess(user) {
   return { type: actionTypes.GET_LOGIN_SUCCESS, payload: user };
@@ -49,9 +54,16 @@ export function resetRegister() {
   return { type: actionTypes.RESET_REGISTER };
 }
 
-
 export function getUserSuccess(user) {
-  return { type: actionTypes.GET_USER_SUCCESS , payload: user };
+  return { type: actionTypes.GET_USER_SUCCESS, payload: user };
+}
+
+export function updateUserSuccess(user) {
+  return { type: actionTypes.UPDATE_USER_SUCCESS, payload: user };
+}
+
+export function updateUserFail(user) {
+  return { type: actionTypes.UPDATE_USER_FAIL, payload: user };
 }
 
 //Login işlemi
@@ -120,5 +132,23 @@ export function getUser(userId) {
         dispatch(getUserSuccess(result.data));
       })
       .catch((error) => console.log("USER BİLGİSİ GELİRKEN HATA", error));
+  };
+}
+
+//USER Bilgi Güncelleme
+export function updateUser(user) {
+  return function (dispatch) {
+    let url = API + "user/update";
+    axios
+      .post(url, user)
+      .then((response) => response.data)
+      .then((result) => {
+        dispatch(updateUserSuccess(result));
+      })
+      .catch((error) => {
+        if (error.response.data.status)
+          dispatch(updateUserFail("USER GÜNCELLERKEN HATA OLUŞTU"));
+        else dispatch(updateUserFail(error.response.data));
+      });
   };
 }

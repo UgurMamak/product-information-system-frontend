@@ -18,6 +18,7 @@ import ProductDetailContainer from "./containers/product-detail-container/"
 import CategoryContainer from "./containers/category-container"
 import UserProfileContainer from "./containers/user-profile-container"
 
+import UserOperationContainer from "./containers/user-update-container"
 
 //component
 import Notfound from "./components/common/not-found"
@@ -47,6 +48,8 @@ export default class App extends Component {
 
         <Route exact path="/categoryOperation" component={CategoryTypeOperation}/>
 
+        <Route exact path="/userUpdate/:userId" component={UserOperationContainer}/>
+        
         <Route exact path="/deneme" component={Deneme}/>
         <Route component={Notfound} />
         </Switch>
