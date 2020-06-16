@@ -20,7 +20,9 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
+  NavLink,
 } from "reactstrap";
+import { Link } from "@material-ui/core";
 
 class index extends Component {
   constructor() {
@@ -84,7 +86,7 @@ class index extends Component {
                 {this.state.pageOfItems.map((product) => (
                   <div className="col-lg-4 col-md-6" key={product.productId}>
                     <CardHeader
-                      action={ 
+                      action={
                         <UncontrolledDropdown>
                           <DropdownToggle tag="a" className="nav-link">
                             <MoreVertIcon />
@@ -97,12 +99,11 @@ class index extends Component {
                             >
                               Sil
                             </DropdownItem>
-                            <DropdownItem
-                              onClick={() =>
-                                this.updateProduct(product.productId)
-                              }
-                            >
-                              Güncelle
+
+                            <DropdownItem>
+                              <a href={"/productUpdate/" + product.productId}>
+                                Güncelle
+                              </a>
                             </DropdownItem>
                           </DropdownMenu>
                         </UncontrolledDropdown>
@@ -123,7 +124,6 @@ class index extends Component {
           </div>
         </section>
 
-      
         <Modal
           style={{
             display: "flex",
@@ -150,7 +150,7 @@ class index extends Component {
             >
               <h2 id="transition-modal-title">İşlem Hatası</h2>
               <p id="transition-modal-description">
-              {this.props.productReducer.message}
+                {this.props.productReducer.message}
               </p>
             </div>
           </Fade>

@@ -2,23 +2,33 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as ProductActions from "../../redux/product/productActions";
+
 import { API } from "../../helpers/api-config";
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
+import FormGroup from "@material-ui/core/FormGroup";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Chip from "@material-ui/core/Chip";
 //component
 import Image from "../product-add/image";
+import CategoryChecked from "../product-add/category-checked"
+import TypeSelect from "../product-add/type-select";
+
+import * as ProductActions from "../../redux/product/productActions";
+import * as ProductCartActions from "../../redux/product-cart/productCartActions"
 
 class index extends Component {
   constructor() {
     super();
     this.state = {
-      productType: "",
-      categories: [],
-      productName: "",
-      content: "",
+      
       control: false,
       controlMessage: "",
+
+      productName: "",
+      content: "",
+      categories: [],
+      productType: "",
 
       key: 0,
       imageFileList: [],
@@ -134,6 +144,12 @@ class index extends Component {
     this.newCreateImage(imageInfo);
   };
 
+  handleChange = (event) => {
+    this.setState({ refresh:1});
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   updateProduct = () => {
     const data = new FormData();
 
@@ -141,11 +157,47 @@ class index extends Component {
       data.append("oldImageName", this.state.oldImageName[i]);
     }
     for (let i = 0; i < this.state.imageFileList.length; i++) {
-        data.append("NewImages", this.state.imageFileList[i]);
-      }
-      data.append("id",this.props.match.params.productId);
-      this.props.actions.updateProduct(data);
-      console.log("mesaj",this.props.updateReducer);
+      data.append("NewImages", this.state.imageFileList[i]);
+    }
+
+    for (let i = 0; i < this.state.categories.length; i++) {
+      data.append("Categories", this.state.categories[i]);
+    }
+
+    data.append("id", this.props.match.params.productId);
+    data.append("productName",this.state.productName);
+    data.append("content",this.state.content);
+    data.append("ProductTypeId", this.state.productType);
+    this.props.actions.updateProduct(data);
+
+  };
+
+
+  deleteCategory = (productId, categoryId) => {
+    this.setState({ refresh:1});
+    this.props.actions.delProCategory({
+      categoryId: categoryId,
+      productId: productId,
+    });
+  };
+
+
+  checkedChange = async (event) => {
+    this.setState({ refresh: 1 });
+    if (event.target.checked) {
+      this.state.categories.push(event.target.name);
+    } else {
+      var array = [...this.state.categories]; // make a separate copy of the array
+      var sonuc = await array.filter((item) => item !== event.target.name);
+      this.setState({ categories: sonuc });
+    }
+    console.log("Kategoriler", this.state.categories);
+  };
+
+  selectType = async (event) => {
+    this.setState({ refresh: 1 });
+    await this.setState({ productType: event.target.value });
+    console.log("type tipi", this.state.productType); //save işlemiiçin
   };
 
   render() {
@@ -171,12 +223,21 @@ class index extends Component {
         <div className="col-lg-4 col-md-6" key={i}>
           {image}
         </div>
-      );
+      ); 
     });
 
+    console.log("detay",this.props.productReducer);
+      console.log("delete",this.props.cartReducer.delPCategoryStatus);
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
+        {this.props.updateReducer.updateStatus === 1 ? (
+          window.location.reload()
+        ) : (
+          <div />
+        )}
+
+        {this.props.cartReducer.delPCategoryStatus===1?   window.location.reload():""}
 
         <div className="container">
           <div className="row">
@@ -212,13 +273,82 @@ class index extends Component {
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">
-              <div className="row tracking_form">
+
+            {this.props.productReducer.productDetail.map((product)=>(
+
+
+
+
+              <div className="row tracking_form" key={product.productId}>
+                
+                <div className="col-md-12 form-group">
+                <label>Ürün Adı</label>
+                  <input
+                    className="form-control"
+                    name="productName"
+                    id="productName"
+                    rows={1}
+                    placeholder="ürün adı"
+                    defaultValue={product.productName}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+
+                <div className="col-md-12 form-group">
+                  <label>İçerik</label>
+                  <textarea
+                    className="form-control"
+                    name="content"
+                    id="content"
+                    rows={2}
+                    placeholder="ürün açıklaması"
+                    defaultValue={product.content}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+
+                <div className="col-md-12 form-group">
+                  <TypeSelect
+                    productType={this.state.productType}
+                    selectType={this.selectType} 
+                    label={product.productType}
+                  />
+                </div>
+
+                <div className="col-md-12 form-group">
+                  Mevcut Kategoriler
+                  <br/>
+                    {product.productCategoryDtos.map((category) => (
+                      <Chip
+                        key={category.categoryId}
+                        icon={<DeleteIcon />}
+                        label={category.categoryName}
+                        onDelete={() =>
+                          this.deleteCategory(product.productId, category.categoryId)
+                        }
+                        color="secondary"
+                        size="small"
+                      />
+                    ))}             
+                 </div>
+
+                 <div className="col-md-12 form-group">
+                 <CategoryChecked checkedChange={this.checkedChange} />{" "}
+                 </div>
+
                 <div className="col-md-12 form-group">
                   <button onClick={this.updateProduct} className="primary-btn">
                     Güncelle
                   </button>
                 </div>
+
+
+
               </div>
+))}
+
+
+
             </div>
           </div>
         </section>
@@ -230,7 +360,8 @@ class index extends Component {
 function mapStateToProps(state) {
   return {
     productReducer: state.ProductReducer,
-    updateReducer:state.ProductUpdateReducer
+    updateReducer: state.ProductUpdateReducer,
+    cartReducer:state.ProductCartReducer
   };
 }
 
@@ -239,6 +370,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       getProduct: bindActionCreators(ProductActions.getProductDetail, dispatch),
       updateProduct: bindActionCreators(ProductActions.updateProduct, dispatch),
+      delProCategory:bindActionCreators(ProductCartActions.deleteProductCategory,dispatch)
     },
   };
 }

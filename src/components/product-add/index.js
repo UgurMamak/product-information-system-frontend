@@ -195,8 +195,9 @@ class index extends Component {
                   <TypeSelect
                     productType={this.state.productType}
                     selectType={this.selectType}
+                    label="Ürün Tipi"
                   />
-                </div>
+                </div> 
 
                 <div className="col-md-12 form-group">
                   <input

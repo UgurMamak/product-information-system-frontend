@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
@@ -13,19 +12,20 @@ class TypeSelect extends Component {
   }
   render() {
     return (
-
-       
-           
-      <FormControl variant="outlined" className="col-md-12 form-group"  size="small">
-        <InputLabel id="demo-simple-select-outlined-label">Ürün Tipi</InputLabel>
+      <FormControl
+        variant="outlined"
+        className="col-md-12 form-group"
+        size="small"
+      >
+        <InputLabel id="demo-simple-select-outlined-label">
+          {this.props.label}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={this.props.productType}
           onChange={(event) => this.props.selectType(event)}
-          label="Ürün Tipi"
-         
-          
+          label={this.props.label}
         >
           <MenuItem value="">Ürün Tipi Seçiniz..</MenuItem>
           {this.props.typeReducer.productType.map((type) => (
@@ -35,9 +35,6 @@ class TypeSelect extends Component {
           ))}
         </Select>
       </FormControl>
-            
-     
-
     );
   }
 }

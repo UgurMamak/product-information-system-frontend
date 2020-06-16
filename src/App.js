@@ -25,6 +25,8 @@ import ProductAdd from "./components/product-add"
 import ProductUpdate from "./components/product-update"
 import Deneme from "./components/deneme/"
 
+import CategoryTypeOperation from "./components/category-type-operation"
+
 export default class App extends Component {
   render() {
     return (
@@ -42,6 +44,9 @@ export default class App extends Component {
         <Route exact path="/profile/:userId" component={UserProfileContainer}/>
         <Route exact path="/productAdd" component={ProductAdd}/>
         <Route exact path="/productUpdate/:productId" component={ProductUpdate}/>
+
+        <Route exact path="/categoryOperation" component={CategoryTypeOperation}/>
+
         <Route exact path="/deneme" component={Deneme}/>
         <Route component={Notfound} />
         </Switch>

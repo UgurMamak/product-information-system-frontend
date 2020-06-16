@@ -11,12 +11,16 @@ const GET_PRODUCTCART_FAIL = "GET_PRODUCTCART_FAIL";
 
 const GET_USERCART_SUCCESS = "GET_USERCART_SUCCESS";
 
+const DELETE_PRODUCTCATEGORY_SUCCESS = "DELETE_PRODUCTCATEGORY_SUCCESS";
+const DELETE_PRODUCTCATEGORY_FAIL = "DELETE_PRODUCTCATEGORY_FAIL";
 
 export const actionTypes = {
   GET_POPULARCART_SUCCESS,
   GET_POPULARCART_FAIL,
   GET_PRODUCTCART_SUCCESS,
-  GET_USERCART_SUCCESS
+  GET_USERCART_SUCCESS,
+  DELETE_PRODUCTCATEGORY_SUCCESS,
+  DELETE_PRODUCTCATEGORY_FAIL
 };
 
 function getPopularCartSuccess(productCart) {
@@ -31,7 +35,16 @@ function getUserCartSuccess(productCart) {
   return { type: actionTypes.GET_USERCART_SUCCESS, payload: productCart };
 }
 
-//Tüm kategorileri çeker
+
+function deleteProductCategorySuccess(category) {
+  return { type: actionTypes.DELETE_PRODUCTCATEGORY_SUCCESS, payload: category };
+}
+
+function deleteProductCategoryFail(category) {
+  return { type: actionTypes.DELETE_PRODUCTCATEGORY_FAIL, payload: category };
+} 
+
+//
 export function getPopularCart() {
   return function (dispatch) {
     let url = API + "product/popularproductcart";
@@ -89,5 +102,25 @@ export function getUserCart(userId) {
     axios.get(url).then((result) => {
       dispatch(getUserCartSuccess(result.data));
     });
+  };
+}
+
+
+
+
+export function deleteProductCategory(productCategory) {
+  return function (dispatch) {
+    let url = API + "productCategory/delete";
+    axios
+      .post(url, productCategory)
+      .then((response) => response.data)
+      .then((result) => {
+        dispatch(deleteProductCategorySuccess(result));
+      })
+      .catch((error) => {
+        if (error.response.data.status)
+          dispatch(deleteProductCategoryFail("BİLİNMEYEN HATA OLUŞTU"));
+        else dispatch(deleteProductCategoryFail(error.response.data));
+      });
   };
 }
