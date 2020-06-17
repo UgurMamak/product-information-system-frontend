@@ -19,7 +19,7 @@ export default class index extends Component {
           <h6 className="deal-title">{this.props.product.productName}</h6>
           <ul className="blog_meta list">
             <li>
-              <Link to="/" style={{ color: "white" }}>
+              <Link to={"/profile/"+this.props.product.userId} style={{ color: "white" }}>
                 {" "}
                 {this.props.product.firstName +
                   " " +
@@ -28,7 +28,7 @@ export default class index extends Component {
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ color: "white" }}>
+              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
                 {this.props.product.productPoint === null
                   ? "Puan verilmemiş"
                   : this.props.product.productPoint + " puan"}
@@ -36,12 +36,12 @@ export default class index extends Component {
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ color: "white" }}>
+              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
                 1.2M Beğeni<i className="lnr lnr-heart"></i>
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ color: "white" }}>
+              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
                 {this.props.product.commentNumber} Yorum
                 <i className="lnr lnr-bubble"></i>
               </Link>

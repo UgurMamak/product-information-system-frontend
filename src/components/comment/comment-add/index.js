@@ -50,8 +50,7 @@ class index extends Component {
       <div className="col-lg-12" > 
         <div className="review_box">
           <h4>Yorum Ekle</h4>
-          <p>Your Rating:</p>
-          <p>Outstanding</p>
+          
           {this.state.control === true ? (
             <Alert severity="error">
               <AlertTitle>UYARI</AlertTitle>

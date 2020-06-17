@@ -30,15 +30,15 @@ export default class index extends Component {
                     this.props.product.lastName}
                 </p>
               </Link>
-              <a href="/" className="social-info">
+              <a href={"/productDetail/"+this.props.product.productId} className="social-info">
                 <span className="lnr lnr-heart" />
                 <p className="hover-text">Beğenme sayısı</p>
               </a>
-              <a href="/" className="social-info">
+              <a href={"/productDetail/"+this.props.product.productId} className="social-info">
                 <span className="lnr lnr-bubble" />
                 <p className="hover-text">{this.props.product.commentNumber}</p>
               </a>
-              <a href="/" className="social-info">
+              <a href={"/productDetail/"+this.props.product.productId} className="social-info">
                 <span className="lnr lnr-star-half" />
                 <p className="hover-text">
                 {this.props.product.productPoint === null
