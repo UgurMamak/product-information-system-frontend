@@ -44,6 +44,7 @@ class index extends Component {
           color="secondary"
           aria-label="delete" 
           size="small"
+          style={{"color":"#ffba00"}}
         >
          
           {this.props.trueNumber}
@@ -54,6 +55,7 @@ class index extends Component {
           color="secondary"
           aria-label="delete"
           size="small"
+          style={{"color":"#ffba00"}}
         >
           {this.props.falseNumber}
           <DislikeIcon fontSize="small" />

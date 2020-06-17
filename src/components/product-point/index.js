@@ -29,7 +29,7 @@ class index extends Component {
           <StarIcon fontSize="large" style={{ color: "yellow" }} />4
         </IconButton>
         <IconButton aria-label="delete" onClick={() => this.handlePoint(5)}>
-          <StarIcon fontSize="large" style={{ color: "yellow" }} />5
+          <StarIcon fontSize="large" style={{ color: "yellow" }} />5 
         </IconButton>
       </div>
     );

@@ -21,7 +21,7 @@ class LikePost extends Component {
   }
 
   handleDislike =async (event) => {
-      console.log("dislike tıklandı");
+      
     if (localStorage.getItem("userId") === null) {
       alertify.error("Postu beğenmek için sisteme giriş yapmanız gerekiyor.");
     } else {
@@ -32,9 +32,11 @@ class LikePost extends Component {
       });
     }
   };
+  
 
   handleLike =async (event) => {
-      console.log("like tıklandı");
+ 
+   
     if (localStorage.getItem("userId") === null) {
       alertify.error("Postu beğenmek için sisteme giriş yapmanız gerekiyor.");
     } else {
@@ -53,6 +55,7 @@ class LikePost extends Component {
       alertify.warning(this.props.likeReducer.likeValue.message);
       //this.props.actions.resetStatus();
     }
+   
     return (
       <div>
       
@@ -60,6 +63,7 @@ class LikePost extends Component {
           onClick={this.handleLike}
           color="secondary"
           aria-label="delete"
+          style={{"color":"#ffba00"}}
         >
           <LikeIcon fontSize="inherit" />
           {this.props.likeReducer.likeValue.trueNumber}        
@@ -68,6 +72,7 @@ class LikePost extends Component {
           onClick={this.handleDislike}
           color="secondary"
           aria-label="delete"
+          style={{"color":"#ffba00"}}
         >
           <DislikeIcon fontSize="inherit" />
           {this.props.likeReducer.likeValue.falseNumber}

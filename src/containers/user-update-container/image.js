@@ -12,11 +12,11 @@ export default class Image extends Component {
   };
   render() {
     return (
-      <div className="row">
+      <div className="row" style={{ textAlign: "center" }}>
         <div className="col-sm-2">
           <div className="text-center">
             <img
-              /*src={this.props.imagePath}*/ src={this.props.imagePath}
+              src={this.props.imagePath}
               className="avatar img-circle img-thumbnail"
               alt="avatar"
               style={{ borderRadius: "50%" }}
@@ -36,6 +36,7 @@ export default class Image extends Component {
               size="small"
               aria-label="upload picture"
               component="span"
+              style={{ color: "#ffba00" }}
             >
               <ImageIcon />
               {this.props.imageFile === null

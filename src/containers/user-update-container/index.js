@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import * as UserActions from "../../redux/user/userActions";
-import UserMenu from "../../components/user-menu"
+import UserMenu from "../../components/user-menu";
 //components
 import Image from "./image";
 class index extends Component {
@@ -85,27 +85,30 @@ class index extends Component {
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
-        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : ""}
+
+        <div className="container">
+          <br />
+
+          {this.props.user.userData.map((user) => (
+            <Image
+              handleFileUpload={this.handleFileUpload}
+              imageFile={this.state.imageFile}
+              imagePath={
+                this.state.imagePath === ""
+                  ? API + "userImage/" + user.imageName
+                  : this.state.imagePath
+              }
+              user={user}
+              key={user.id}
+            />
+          ))}
+        </div>
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">
-              {this.props.user.userData.map((user) => (
-                <Image
-                  handleFileUpload={this.handleFileUpload}
-                  imageFile={this.state.imageFile}
-                  imagePath={
-                    this.state.imagePath === ""
-                      ? API + "userImage/" + user.imageName
-                      : this.state.imagePath
-                  }
-                  user={user}
-                  key={user.id}
-                />
-              ))}
-
-              <div className="row">
-                <div className="col-lg-4 col-md-6">
-                  <br />
+              <form className="row tracking_form">
+                <div className="col-md-12 form-group">
                   {this.props.updateUser.updateStatus === 1
                     ? window.location.reload()
                     : ""}
@@ -125,76 +128,71 @@ class index extends Component {
                   ) : (
                     ""
                   )}
-                  <br />
-                  <div className="col-md-12 form-group">
-                    <input
-                      className="form-control"
-                      name="firstName"
-                      id="firstName"
-                      rows={1}
-                      placeholder="Ad.."
-                      defaultValue={""}
-                      onChange={this.handleChange}
-                    />{" "}
-                  </div>
-                  <div className="col-md-12 form-group">
-                    <input
-                      className="form-control"
-                      name="lastName"
-                      id="lastName"
-                      rows={1}
-                      placeholder="Soyad.."
-                      defaultValue={""}
-                      onChange={this.handleChange}
-                    />{" "}
-                  </div>
-                  <div className="col-md-12 form-group">
-                    <input
-                      className="form-control"
-                      name="email"
-                      id="email"
-                      rows={1}
-                      placeholder="email.."
-                      defaultValue={""}
-                      onChange={this.handleChange}
-                    />{" "}
-                  </div>
-                  <div className="col-md-12 form-group">
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password1"
-                      id="password1"
-                      rows={1}
-                      placeholder="Parola.."
-                      defaultValue={""}
-                      onChange={this.handleChange}
-                    />{" "}
-                  </div>
-                  <div className="col-md-12 form-group">
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password2"
-                      id="password2"
-                      rows={1}
-                      placeholder="Parola tekrar.."
-                      defaultValue={""}
-                      onChange={this.handleChange}
-                    />{" "}
-                  </div>
-                  <div className="row tracking_form">
-                    <div className="col-md-12 form-group">
-                      <button
-                        onClick={this.handleUpdate}
-                        className="primary-btn"
-                      >
-                        Gönder
-                      </button>
-                    </div>
-                  </div>
                 </div>
-              </div>
+                <div className="col-md-12 form-group">
+                  <input
+                    className="form-control"
+                    name="firstName"
+                    id="firstName"
+                    rows={1}
+                    placeholder="Ad.."
+                    defaultValue={""}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+                <div className="col-md-12 form-group">
+                  <input
+                    className="form-control"
+                    name="lastName"
+                    id="lastName"
+                    rows={1}
+                    placeholder="Soyad.."
+                    defaultValue={""}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+                <div className="col-md-12 form-group">
+                  <input
+                    className="form-control"
+                    name="email"
+                    id="email"
+                    rows={1}
+                    placeholder="email.."
+                    defaultValue={""}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+                <div className="col-md-12 form-group">
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password1"
+                    id="password1"
+                    rows={1}
+                    placeholder="Parola.."
+                    defaultValue={""}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+                <div className="col-md-12 form-group">
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password2"
+                    id="password2"
+                    rows={1}
+                    placeholder="Parola tekrar.."
+                    defaultValue={""}
+                    onChange={this.handleChange}
+                  />{" "}
+                </div>
+
+                <div className="col-md-12 form-group">
+                  <button onClick={this.handleUpdate} className="primary-btn">
+                    Gönder
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>

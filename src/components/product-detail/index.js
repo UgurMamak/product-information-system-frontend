@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import * as productActions from "../../redux/product/productActions";
 //components
 import Image from "./image";
-import LikeProduct from "../likeProduct"
+import LikeProduct from "../likeProduct";
 //containers
 import CommentContainer from "../../containers/comment-container";
 class index extends Component {
@@ -13,12 +13,8 @@ class index extends Component {
     this.props.actions.getProduct(this.props.productId);
   }
   render() {
-
-
-
     return (
       <div>
-        
         {this.props.productReducer.productDetail.map((product) => (
           <div key={product.productId}>
             <div className="product_image_area">
@@ -29,17 +25,20 @@ class index extends Component {
                     <Image image={product.productImageListDtos} />
                   </div>
                   <div className="col-lg-5 offset-lg-1">
-                  <LikeProduct productId={product.productId}/>
                     <div className="s_product_text">
                       <h3>{product.productName}</h3>
                       <p>{product.content}</p>
                     </div>
                   </div>
                 </div>
+                <LikeProduct productId={product.productId} />
               </div>
             </div>
-         
-            <CommentContainer comment={product.commentDtos} productPoint={product.productPoint} />
+
+            <CommentContainer
+              comment={product.commentDtos}
+              productPoint={product.productPoint}
+            />
           </div>
         ))}
       </div>

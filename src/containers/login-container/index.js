@@ -26,9 +26,11 @@ class index extends Component {
   };
 
   render() {
-    console.log("değer", this.props.user);
     if (this.props.user.loginStatus === 1) {
-      // console.log("giriş başarılı");
+      return <Redirect to={"/profile/" + localStorage.getItem("userId")} />;
+    }
+
+    if (localStorage.getItem("userId") !== null) {
       return <Redirect to={"/profile/" + localStorage.getItem("userId")} />;
     }
 

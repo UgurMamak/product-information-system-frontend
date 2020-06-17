@@ -16,7 +16,8 @@ export default class index extends Component {
           />
         ))}
         <div className="deal-details">
-          <h6 className="deal-title">{this.props.product.productName}</h6>
+        <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
+          <h6 className="deal-title">{this.props.product.productName}</h6></Link>
           <ul className="blog_meta list">
             <li>
               <Link to={"/profile/"+this.props.product.userId} style={{ color: "white" }}>

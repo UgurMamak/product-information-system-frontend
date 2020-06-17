@@ -39,7 +39,7 @@
   z-index: 2;
   color: #23527c;
   background-color: #eee;
-  border-color: #ee4266;
+  border-color: #ffba00; 
 }
 .pagination > .active > a,
 .pagination > .active > a:focus,
@@ -50,19 +50,19 @@
   z-index: 3;
   color: #fff;
   cursor: default;
-  background-color: #ee4266;
-  border-color: #ee4266;
-}
+  background-color: #ffba00;
+  border-color: #ffba00;
+} 
 .pagination > .disabled > a,
 .pagination > .disabled > a:focus,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > span,
 .pagination > .disabled > span:focus,
 .pagination > .disabled > span:hover {
-  color: #ee4266;
+  color: #ffba00;
   cursor: not-allowed;
   background-color: #fff;
-  border-color: #ee4266;
+  border-color: #ffba00;
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {

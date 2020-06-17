@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { Button } from "reactstrap";
+
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
 //component
 import TypeSelect from "./type-select";
 import CategoryChecked from "./category-checked";
 import Image from "./image";
-import UserMenu from "../user-menu"
+import UserMenu from "../user-menu";
 import * as ProductActions from "../../redux/product/productActions";
 class index extends Component {
   constructor() {
@@ -32,14 +32,11 @@ class index extends Component {
 
   createButton = async (imageInfo) => {
     if (imageInfo.sil === true) {
-      console.log("silinecek", imageInfo.name);
       var yeni = this.state.buttonList.filter(
         (item) => item.props.isim !== imageInfo.name
       );
       this.setState({ buttonList: yeni });
-      console.log("yeni list", yeni);
     } else {
-      console.log("oluşan", imageInfo);
       const k = this.state.key + 1;
 
       this.state.buttonList.push(
@@ -74,7 +71,7 @@ class index extends Component {
     var name = event.target.name;
     var sonuc = this.state.imageFileList.filter((image) => image.name !== name);
     this.setState({ imageFileList: sonuc });
-    console.log("name", name);
+
     const imageInfo = {
       sil: true,
       name: name,
@@ -90,7 +87,6 @@ class index extends Component {
 
   selectType = async (event) => {
     await this.setState({ productType: event.target.value });
-    console.log("type tipi", this.state.productType); //save işlemiiçin
   };
 
   checkedChange = async (event) => {
@@ -101,7 +97,6 @@ class index extends Component {
       var sonuc = await array.filter((item) => item !== event.target.name);
       this.setState({ categories: sonuc });
     }
-    console.log("Kategoriler", this.state.categories);
   };
 
   handleSave = () => {
@@ -117,7 +112,6 @@ class index extends Component {
       data.append("Content", this.state.content);
       data.append("UserId", localStorage.getItem("userId"));
       data.append("ProductTypeId", this.state.productType);
-      //data.append("ProductImages", this.state.imageFile);
 
       for (let i = 0; i < this.state.imageFileList.length; i++) {
         data.append("ProductImages", this.state.imageFileList[i]);
@@ -130,13 +124,12 @@ class index extends Component {
       this.setState({ control: true, controlMessage: "Boş Alan Bırakmayınız" });
     }
   };
- 
+
   render() {
-    const palette= {
-      "color":"orange"
-    }
+    const palette = {
+      color: "orange",
+    };
     const imageList = [];
-    console.log("butonlst", this.state.buttonList);
 
     this.state.buttonList.map((image, i) => {
       imageList.push(
@@ -147,7 +140,7 @@ class index extends Component {
     });
 
     return (
-      <div >
+      <div>
         <section className="banner-area organic-breadcrumb">
           <div className="container">
             <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -157,11 +150,10 @@ class index extends Component {
             </div>
           </div>
         </section>
-        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
-        <br/>
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : ""}
+        <br />
         <div className="container">
           <div className="row">
-     
             <div className="col-xl-9 col-lg-8 col-md-7">
               <div>
                 <input
@@ -199,7 +191,7 @@ class index extends Component {
                     selectType={this.selectType}
                     label="Ürün Tipi"
                   />
-                </div> 
+                </div>
 
                 <div className="col-md-12 form-group">
                   <input
@@ -237,10 +229,13 @@ class index extends Component {
                   )}
 
                   {this.props.productReducer.createStatus === 1 ? (
-                    <Alert severity="success">
-                      <AlertTitle>Başarılı</AlertTitle>
-                      {this.props.productReducer.message}
-                    </Alert>
+                    <div>
+                      <Alert severity="success">
+                        <AlertTitle>Başarılı</AlertTitle>
+                        {this.props.productReducer.message}
+                      </Alert>
+                      {setTimeout(window.location.reload(), 3000)}
+                    </div>
                   ) : (
                     <div />
                   )}
