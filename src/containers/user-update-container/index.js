@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import * as UserActions from "../../redux/user/userActions";
-
+import UserMenu from "../../components/user-menu"
 //components
 import Image from "./image";
 class index extends Component {
@@ -85,7 +85,7 @@ class index extends Component {
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
-
+        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">

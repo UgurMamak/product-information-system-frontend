@@ -16,7 +16,7 @@ class index extends Component {
   handleDislike = async (event) => {
    await this.props.actions.addCommentLike({
       commentId: this.props.commentId,
-      userId: "c5638364-e55b-433b-b84e-3ba26cf9fe38",
+      userId:localStorage.getItem("userId"),
       likeStatus: false,
     });
    console.log("like tıklandı");
@@ -25,9 +25,9 @@ class index extends Component {
   handleLike = async (event) => {
   await  this.props.actions.addCommentLike({
       commentId: this.props.commentId,
-      userId: "c5638364-e55b-433b-b84e-3ba26cf9fe38",
+      userId:localStorage.getItem("userId"),
       likeStatus: true,
-    });
+    }); 
   };
 
   //state ve props değişimde çalışır.

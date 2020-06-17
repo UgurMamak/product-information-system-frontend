@@ -5,7 +5,7 @@ import CommentContainer from "../comment-container"
 
 //component
 import ProductDetail from "../../components/product-detail";
-
+import UserMenu from "../../components/user-menu"
 export default class index extends Component {
   render() {
     return (
@@ -26,6 +26,7 @@ export default class index extends Component {
             </div>
           </div> 
         </section>
+        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
         <ProductDetail productId={this.props.match.params.productId} />
       </div>
     );

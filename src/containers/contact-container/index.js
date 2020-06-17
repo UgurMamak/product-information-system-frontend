@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ContactForm from "./contact-form";
-
+import UserMenu from "../../components/user-menu"
 export default class index extends Component {
   render() {
     return (
@@ -21,6 +21,7 @@ export default class index extends Component {
             </div>
           </div>
         </section>
+        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
         <section className="login_box_area section_gap">
           <div className="row">
             <div className="col-md-4" />

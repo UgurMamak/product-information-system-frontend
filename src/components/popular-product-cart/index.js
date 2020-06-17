@@ -30,19 +30,19 @@ export default class index extends Component {
             <li>
               <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
                 {this.props.product.productPoint === null
-                  ? "Puan verilmemiş"
+                  ? "verilmedi"
                   : this.props.product.productPoint + " puan"}
                 <i className="lnr lnr-star"></i>
               </Link>
             </li>
             <li>
               <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
-                1.2M Beğeni<i className="lnr lnr-heart"></i>
+              {this.props.product.likeNumber+" "}<i className="lnr lnr-heart"></i>
               </Link>
             </li>
             <li>
               <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
-                {this.props.product.commentNumber} Yorum
+                {this.props.product.commentNumber+" "}
                 <i className="lnr lnr-bubble"></i>
               </Link>
             </li>

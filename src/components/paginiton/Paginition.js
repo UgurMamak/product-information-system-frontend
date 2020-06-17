@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Pagination from '@material-ui/lab/Pagination';
 import "./paginition.css"
 export default class Paginition extends Component {
   constructor(props) {
@@ -118,31 +117,32 @@ export default class Paginition extends Component {
         {/********SAYFA SAYISINI ÇEKER******/}
         {pager.pages.map((page, index) => (
           <li key={page} className={pager.currentPage === page ? "active" : ""}>
+           
             <a style={{ cursor: "pointer" }} onClick={() => this.setPage(page)}>
               {page}
             </a>
           </li>
         ))}
         {/********SAYFA SAYISINI ÇEKER******/}
-
+ 
         <li
           className={pager.currentPage === pager.totalPages ? "disabled" : ""}
         >
           <a
             style={{ cursor: "pointer" }}
             onClick={() => this.setPage(pager.currentPage + 1)}
-          >
-            >
+          > 
+            {">"}
           </a>
         </li>
         <li
           className={pager.currentPage === pager.totalPages ? "disabled" : ""}
         >
           <a
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer","fontWeight":"bold" }}
             onClick={() => this.setPage(pager.totalPages)}
           >
-            >>
+           {">>"}
           </a>
           
         </li>

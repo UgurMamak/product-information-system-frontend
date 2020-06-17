@@ -13,6 +13,7 @@ import UserInfo from "./user-info";
 import Pagination from "../../components/paginiton/Paginition";
 import ProductCart from "../../components/product-cart";
 import AlertDialog from "../../components/alert-dialog";
+import UserMenu from "../../components/user-menu";
 import * as ProductCartActions from "../../redux/product-cart/productCartActions";
 import * as ProductActions from "../../redux/product/productActions";
 import {
@@ -72,12 +73,16 @@ class index extends Component {
   };
   modalClose = () => this.setState({ modalOpen: false });
   render() {
-    console.log("cartbilgi", this.props.productCart.popularProduct);
-    console.log("product", this.props.productReducer);
-
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
+
+        {this.props.match.params.userId === localStorage.getItem("userId") ? (
+          <UserMenu />
+        ) : (
+          <div />
+        )}
+
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">
@@ -85,31 +90,36 @@ class index extends Component {
               <div className="row">
                 {this.state.pageOfItems.map((product) => (
                   <div className="col-lg-4 col-md-6" key={product.productId}>
-                    <CardHeader
-                      action={
-                        <UncontrolledDropdown>
-                          <DropdownToggle tag="a" className="nav-link">
-                            <MoreVertIcon />
-                          </DropdownToggle>
-                          <DropdownMenu size="sm">
-                            <DropdownItem
-                              onClick={() =>
-                                this.deleteproduct(product.productId)
-                              }
-                            >
-                              Sil
-                            </DropdownItem>
+                    {this.props.match.params.userId ===
+                    localStorage.getItem("userId") ? (
+                      <CardHeader
+                        action={
+                          <UncontrolledDropdown>
+                            <DropdownToggle tag="a" className="nav-link">
+                              <MoreVertIcon />
+                            </DropdownToggle>
+                            <DropdownMenu size="sm">
+                              <DropdownItem
+                                onClick={() =>
+                                  this.deleteproduct(product.productId)
+                                }
+                              >
+                                Sil
+                              </DropdownItem>
 
-                            <DropdownItem>
-                              <a href={"/productUpdate/" + product.productId}>
-                                Güncelle
-                              </a>
-                            </DropdownItem>
-                          </DropdownMenu>
-                        </UncontrolledDropdown>
-                      }
-                      subheader={product.created}
-                    />
+                              <DropdownItem>
+                                <a href={"/productUpdate/" + product.productId}>
+                                  Güncelle
+                                </a>
+                              </DropdownItem>
+                            </DropdownMenu>
+                          </UncontrolledDropdown>
+                        }
+                        subheader={product.created}
+                      />
+                    ) : (
+                      ""
+                    )}
 
                     <ProductCart product={product} />
                   </div>

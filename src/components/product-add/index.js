@@ -9,6 +9,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import TypeSelect from "./type-select";
 import CategoryChecked from "./category-checked";
 import Image from "./image";
+import UserMenu from "../user-menu"
 import * as ProductActions from "../../redux/product/productActions";
 class index extends Component {
   constructor() {
@@ -156,7 +157,8 @@ class index extends Component {
             </div>
           </div>
         </section>
-
+        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
+        <br/>
         <div className="container">
           <div className="row">
      

@@ -8,7 +8,7 @@ class index extends Component {
   state = {
     email: "",
     password: "",
-  }; 
+  };
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -21,19 +21,19 @@ class index extends Component {
         email: this.state.email,
         password: this.state.password,
       });
-    } 
+    }
     event.preventDefault();
   };
 
   render() {
+    console.log("değer", this.props.user);
     if (this.props.user.loginStatus === 1) {
-     // console.log("giriş başarılı");
-       return <Redirect to={"/profile/"+localStorage.getItem("userId")} />;
+      // console.log("giriş başarılı");
+      return <Redirect to={"/profile/" + localStorage.getItem("userId")} />;
     }
 
     return (
       <div className="col-md-6">
-        {console.log("değer", this.props.user)}
         <div className="login-form">
           <h3 className="billing-title text-center">Giriş Yap</h3>
           <br /> <br /> <br /> <br />

@@ -1,15 +1,15 @@
 .pagination {
   display: inline-block;
-  padding-left: 0;
+  padding-left: 0; 
   margin: 20px 0;
-  border-radius: 10px;
+  border-radius: 50px;
 }
 .pagination > li {
   display: inline;
 }
 .pagination > li > a,
-.pagination > li > span {
-  position: relative;
+.pagination > li > span { 
+  position: relative; 
   float: left;
   padding: 6px 12px;
   margin-left: -1px;
@@ -19,18 +19,18 @@
   background-color: #fff;
   border: 1px solid #ee4266;
  /* border:none;*/
- /* border-radius: 20px;*/
+ border-radius: 50px;
 }
 .pagination > li:first-child > a,
 .pagination > li:first-child > span {
   margin-left: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 .pagination > li > a:focus,
 .pagination > li > a:hover,

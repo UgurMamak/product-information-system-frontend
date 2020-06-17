@@ -27,7 +27,7 @@ class index extends Component {
     if (this.state.content !== "") {
       this.props.actions.createComment({
         content: this.state.content,
-        userId: "c6bfdebd-2c5f-48ff-b97c-6a528da23814",
+        userId:localStorage.getItem("userId"),
         productId: this.props.productId,
       }); 
       this.setState({ open: true });

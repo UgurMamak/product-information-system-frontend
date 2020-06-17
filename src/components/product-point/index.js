@@ -9,7 +9,7 @@ class index extends Component {
   handlePoint(point) {
     const data = new FormData();
     data.append("ProductId", this.props.productId);
-    data.append("UserId", "c5638364-e55b-433b-b84e-3ba26cf9fe38");
+    data.append("UserId", localStorage.getItem("userId"));
     data.append("Point", point);
     this.props.actions.addProductPoint(data);
   }

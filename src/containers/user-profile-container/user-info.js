@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as UserActions from "../../redux/user/userActions";
 import { API } from "../../helpers/api-config";
-import { Link } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 
 import SettingsIcon from "@material-ui/icons/Settings";
 import IconButton from "@material-ui/core/IconButton";
+import { Button } from "@material-ui/core";
+
+import LoginRegisterContainer from "../login-register-container";
 class userinfo extends Component {
   componentDidMount() {
     this.props.actions.getUser(this.props.userId);
   }
+
+ 
 
   render() {
     return (
@@ -33,6 +38,7 @@ class userinfo extends Component {
                 <div className="col-sm-10">
                   <h1>{user.firstName + " " + user.lastName}</h1>
                 </div>
+                {localStorage.getItem("userId") === user.id ? 
                 <Link to={"/userUpdate/" + localStorage.getItem("userId")}>
                   <IconButton
                     color="secondary"
@@ -44,6 +50,8 @@ class userinfo extends Component {
                     Ayarlar
                   </IconButton>
                 </Link>
+              :""
+                }
               </div>
             </div>
           </div>
@@ -58,6 +66,7 @@ class userinfo extends Component {
 function mapStateToProps(state) {
   return {
     userReducer: state.UserReducer,
+    loginReducer: state.LoginReducer,
   };
 }
 
@@ -65,6 +74,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       getUser: bindActionCreators(UserActions.getUser, dispatch),
+      resetLoginState: bindActionCreators(UserActions.resetLogin, dispatch),
     },
   };
 }

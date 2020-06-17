@@ -8,6 +8,7 @@ import * as ProductCartActions from "../../redux/product-cart/productCartActions
 //components
 import ProductCart from "../../components/product-cart";
 import Pagination from "../../components/paginiton/Paginition";
+import UserMenu from "../../components/user-menu"
 class index extends Component {
   constructor() {
     super();
@@ -42,7 +43,8 @@ class index extends Component {
             </div>
           </div>
         </section> 
-
+        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
+        <br/>
         <div className="container">
           <div className="row">
             <div className="col-xl-3 col-lg-4 col-md-5">

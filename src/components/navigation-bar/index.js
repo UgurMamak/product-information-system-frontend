@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import { API } from "../../helpers/api-config";
+import { Button } from "reactstrap";
 //actions
 import * as categoryActions from "../../redux/category/categoryActions";
+import * as userActions from "../../redux/user/userActions";
 
 //component
 import SearchBox from "../search-box/";
@@ -26,6 +28,8 @@ class index extends Component {
       )
     );
 
+
+    console.log("navuser", this.props.user);
     return (
       <header className="header_area sticky-header">
         <div className="main_menu">
@@ -66,7 +70,6 @@ class index extends Component {
                     </Link>
                   </li>
 
-                  
                   <li className="nav-item">
                     <Link className="nav-link" to="/contact">
                       İletişim
@@ -77,6 +80,7 @@ class index extends Component {
                   <li className="nav-item">
                     <Link to="/login" className="cart">
                       <span className="ti-user" />
+                  
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -98,6 +102,7 @@ class index extends Component {
 function mapStateToProps(state) {
   return {
     categories: state.CategoryReducer,
+    user: state.loginReducer,
   };
 }
 
@@ -108,6 +113,7 @@ function mapDispatchToProps(dispatch) {
         categoryActions.getCategories,
         dispatch
       ),
+      getUser: bindActionCreators(userActions.loginSuccess(), dispatch),
     },
   };
 }
