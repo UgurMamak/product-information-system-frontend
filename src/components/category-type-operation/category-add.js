@@ -13,16 +13,13 @@ class CategoryAdd extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    this.setState({control:false});
+    this.setState({ control: false });
   };
   handleSave = (event) => {
     if (this.state.categoryName !== "") {
       this.props.actions.saveCategory({
         categoryName: this.state.categoryName,
       });
-      //this.props.actions.getCategories();
-      //this.setState({ open: true });
-      //window.location.reload();
     } else {
       this.setState({ control: true, controlMessage: "Boş Bırakmayınız." });
     }

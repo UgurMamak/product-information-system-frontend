@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import DescriptionIcon from "@material-ui/icons/Description";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
-import userInfo from "../user-profile-container/user-info";
 
 export default class Image extends Component {
   state = {

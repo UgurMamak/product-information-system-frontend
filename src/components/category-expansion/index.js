@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-
 import * as productCartActions from "../../redux/product-cart/productCartActions";
 import { Link } from "@material-ui/core";
 
@@ -14,7 +11,7 @@ class index extends Component {
 
   render() {
     const categoriesList = [];
-    const item = this.props.categories.categories.map((category) =>
+    this.props.categories.categories.map((category) =>
       categoriesList.push(
         <li key={category.id} className="main-nav-list child">
           <Link

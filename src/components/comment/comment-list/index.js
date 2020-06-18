@@ -8,7 +8,7 @@ import PointShow from "../../product-point/point-show";
 class index extends Component {
   render() {
     const commentList = [];
-    const item = this.props.comment.map((comment) =>
+    this.props.comment.map((comment) =>
       commentList.push(
         <div className="review_item" key={comment.id}>
           <div className="media">

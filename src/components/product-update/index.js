@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { API } from "../../helpers/api-config";
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
-import FormGroup from "@material-ui/core/FormGroup";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Chip from "@material-ui/core/Chip";
 //component

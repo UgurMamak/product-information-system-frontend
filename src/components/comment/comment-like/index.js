@@ -4,35 +4,31 @@ import DislikeIcon from "@material-ui/icons/ThumbDownAltOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import alertify from "alertifyjs";
 import * as CommentLikeActions from "../../../redux/comment-like/commentLikeActions";
-import * as ProductActions from "../../../redux/product/productActions"
+import * as ProductActions from "../../../redux/product/productActions";
 class index extends Component {
-
- async componentDidMount() 
-  {
-   // this.props.actions.getCommentLike(this.props.commentId);
+  async componentDidMount() {
+    // this.props.actions.getCommentLike(this.props.commentId);
   }
   handleDislike = async (event) => {
-   await this.props.actions.addCommentLike({
+    await this.props.actions.addCommentLike({
       commentId: this.props.commentId,
-      userId:localStorage.getItem("userId"),
+      userId: localStorage.getItem("userId"),
       likeStatus: false,
     });
-   console.log("like tıklandı");
-  }; 
+    console.log("like tıklandı");
+  };
 
   handleLike = async (event) => {
-  await  this.props.actions.addCommentLike({
+    await this.props.actions.addCommentLike({
       commentId: this.props.commentId,
-      userId:localStorage.getItem("userId"),
+      userId: localStorage.getItem("userId"),
       likeStatus: true,
-    }); 
+    });
   };
 
   //state ve props değişimde çalışır.
-  async componentWillUpdate()
-  {
+  async componentWillUpdate() {
     await this.props.actions.getProduct(this.props.productId);
   }
 
@@ -42,11 +38,10 @@ class index extends Component {
         <IconButton
           onClick={this.handleLike}
           color="secondary"
-          aria-label="delete" 
+          aria-label="delete"
           size="small"
-          style={{"color":"#ffba00"}}
+          style={{ color: "#ffba00" }}
         >
-         
           {this.props.trueNumber}
           <LikeIcon fontSize="small" />
         </IconButton>
@@ -55,7 +50,7 @@ class index extends Component {
           color="secondary"
           aria-label="delete"
           size="small"
-          style={{"color":"#ffba00"}}
+          style={{ color: "#ffba00" }}
         >
           {this.props.falseNumber}
           <DislikeIcon fontSize="small" />
@@ -71,7 +66,6 @@ function mapStateToProps(state) {
   };
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
@@ -79,13 +73,7 @@ function mapDispatchToProps(dispatch) {
         CommentLikeActions.commentLikeAdd,
         dispatch
       ),
-       /* getCommentLike: bindActionCreators(
-        CommentLikeActions.getCommentLike,
-        dispatch
-      ),*/
-      getProduct: bindActionCreators(
-        ProductActions.getProductDetail, dispatch),
-      //resetStatus: bindActionCreators(likeActions.resetStatus, dispatch),
+      getProduct: bindActionCreators(ProductActions.getProductDetail, dispatch),
     },
   };
 }

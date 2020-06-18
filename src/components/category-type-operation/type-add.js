@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";
-
 import * as TypeActions from "../../redux/product-type/productTypeActions";
-
 class TypeAdd extends Component {
   state = {
     typeName: "",
@@ -14,7 +12,7 @@ class TypeAdd extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    this.setState({control:false});
+    this.setState({ control: false });
   };
   handleSave = (event) => {
     if (this.state.typeName !== "") {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ImageChoose from "./imageChoose";
-import { Button } from "reactstrap";
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
 export default class index extends Component {
@@ -15,16 +14,14 @@ export default class index extends Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
   }
   createButton = async (imageInfo) => {
-    if (imageInfo.sil === true) 
-    {
-      console.log("silinecek",imageInfo.name);
+    if (imageInfo.sil === true) {
+      console.log("silinecek", imageInfo.name);
       var yeni = this.state.buttonList.filter(
         (item) => item.props.isim !== imageInfo.name
       );
-      this.setState({buttonList:yeni});
+      this.setState({ buttonList: yeni });
       console.log("yeni list", yeni);
-    } 
-    else {
+    } else {
       console.log("oluşan", imageInfo);
       const k = this.state.key + 1;
 
@@ -61,11 +58,11 @@ export default class index extends Component {
 
     var sonuc = this.state.imageFileList.filter((image) => image.name !== name);
     this.setState({ imageFileList: sonuc });
-    console.log("name",name);
-    const imageInfo={
-        sil:true,
-        name:name
-    }
+    console.log("name", name);
+    const imageInfo = {
+      sil: true,
+      name: name,
+    };
     this.createButton(imageInfo);
   };
 
@@ -73,8 +70,9 @@ export default class index extends Component {
     const imageList = [];
     console.log("butonlst", this.state.buttonList);
 
-    this.state.buttonList.map(item=>(console.log("isisisi",item.props.isim)))
-
+    this.state.buttonList.map((item) =>
+      console.log("isisisi", item.props.isim)
+    );
 
     console.log("imgFileList", this.state.imageFileList);
     this.state.buttonList.map((image, i) => {

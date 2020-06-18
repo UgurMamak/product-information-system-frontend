@@ -16,11 +16,18 @@ export default class index extends Component {
           />
         ))}
         <div className="deal-details">
-        <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
-          <h6 className="deal-title">{this.props.product.productName}</h6></Link>
+          <Link
+            to={"/productDetail/" + this.props.product.productId}
+            style={{ color: "white" }}
+          >
+            <h6 className="deal-title">{this.props.product.productName}</h6>
+          </Link>
           <ul className="blog_meta list">
             <li>
-              <Link to={"/profile/"+this.props.product.userId} style={{ color: "white" }}>
+              <Link
+                to={"/profile/" + this.props.product.userId}
+                style={{ color: "white" }}
+              >
                 {" "}
                 {this.props.product.firstName +
                   " " +
@@ -29,7 +36,10 @@ export default class index extends Component {
               </Link>
             </li>
             <li>
-              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
+              <Link
+                to={"/productDetail/" + this.props.product.productId}
+                style={{ color: "white" }}
+              >
                 {this.props.product.productPoint === null
                   ? "verilmedi"
                   : this.props.product.productPoint + " puan"}
@@ -37,13 +47,20 @@ export default class index extends Component {
               </Link>
             </li>
             <li>
-              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
-              {this.props.product.likeNumber+" "}<i className="lnr lnr-heart"></i>
+              <Link
+                to={"/productDetail/" + this.props.product.productId}
+                style={{ color: "white" }}
+              >
+                {this.props.product.likeNumber + " "}
+                <i className="lnr lnr-heart"></i>
               </Link>
             </li>
             <li>
-              <Link to={"/productDetail/"+this.props.product.productId} style={{ color: "white" }}>
-                {this.props.product.commentNumber+" "}
+              <Link
+                to={"/productDetail/" + this.props.product.productId}
+                style={{ color: "white" }}
+              >
+                {this.props.product.commentNumber + " "}
                 <i className="lnr lnr-bubble"></i>
               </Link>
             </li>

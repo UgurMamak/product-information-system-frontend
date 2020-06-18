@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-
 import CategoryAdd from "./category-add";
 import CategoryList from "./category-list";
-
 import TypeList from "./type-list";
 import TypeAdd from "./type-add";
-import UserMenu from "../user-menu"
+import UserMenu from "../user-menu";
 export default class index extends Component {
   render() {
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
-        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : ""}
         <section className="tracking_box_area section_gap">
           <div className="container">
             <div className="tracking_box_inner">

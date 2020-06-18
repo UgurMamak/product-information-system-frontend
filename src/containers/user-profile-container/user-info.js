@@ -3,19 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as UserActions from "../../redux/user/userActions";
 import { API } from "../../helpers/api-config";
-import { Link, Redirect, Route } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import SettingsIcon from "@material-ui/icons/Settings";
 import IconButton from "@material-ui/core/IconButton";
-import { Button } from "@material-ui/core";
 
-import LoginRegisterContainer from "../login-register-container";
 class userinfo extends Component {
   componentDidMount() {
     this.props.actions.getUser(this.props.userId);
   }
-
- 
 
   render() {
     return (
@@ -38,20 +33,21 @@ class userinfo extends Component {
                 <div className="col-sm-10">
                   <h1>{user.firstName + " " + user.lastName}</h1>
                 </div>
-                {localStorage.getItem("userId") === user.id ? 
-                <Link to={"/userUpdate/" + localStorage.getItem("userId")}>
-                  <IconButton
-                    color="secondary"
-                    size="medium"
-                    aria-label="upload picture"
-                    component="span"
-                  >
-                    <SettingsIcon />
-                    Ayarlar
-                  </IconButton>
-                </Link>
-              :""
-                }
+                {localStorage.getItem("userId") === user.id ? (
+                  <Link to={"/userUpdate/" + localStorage.getItem("userId")}>
+                    <IconButton
+                      color="secondary"
+                      size="medium"
+                      aria-label="upload picture"
+                      component="span"
+                    >
+                      <SettingsIcon />
+                      Ayarlar
+                    </IconButton>
+                  </Link>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

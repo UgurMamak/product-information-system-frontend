@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
 //component
 import CommentList from "../../components/comment/comment-list";
 import CommentAdd from "../../components/comment/comment-add";

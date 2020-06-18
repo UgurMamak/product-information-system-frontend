@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-//container
-import CommentContainer from "../comment-container"
-
 //component
 import ProductDetail from "../../components/product-detail";
 import UserMenu from "../../components/user-menu"

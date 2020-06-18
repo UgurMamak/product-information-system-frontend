@@ -13,17 +13,6 @@ class CategoryList extends Component {
     open: false,
     control: false,
   };
-  /*changeSelect = (event) => {
-        this.setState({ selectedValue: event.target.value });
-      };
-      closeSelect = () => {
-        this.setState({ open: false });
-      };
-    
-      openSelect = () => {
-        this.props.actions.getCategories();
-        this.setState({ open: true });
-      };*/
 
   //button
   categoryDelete = () => {

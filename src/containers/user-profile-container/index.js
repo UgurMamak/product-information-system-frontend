@@ -7,7 +7,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-
+import { Admin } from "../../helpers/role";
 //component
 import UserInfo from "./user-info";
 import Pagination from "../../components/paginiton/Paginition";
@@ -21,9 +21,9 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
-  NavLink,
+ 
 } from "reactstrap";
-import { Link } from "@material-ui/core";
+
 
 class index extends Component {
   constructor() {
@@ -38,6 +38,7 @@ class index extends Component {
     this.onChangePage = this.onChangePage.bind(this);
   }
   componentDidMount() {
+    
     this.props.actions.getProductCart(this.props.match.params.userId);
   }
   onChangePage(pageOfItems) {
@@ -77,7 +78,7 @@ class index extends Component {
       <div>
         <section className="banner-area organic-breadcrumb" />
 
-        {this.props.match.params.userId === localStorage.getItem("userId") ? (
+        {localStorage.getItem("userId")!==null ? (
           <UserMenu />
         ) : (
           <div />
@@ -91,7 +92,7 @@ class index extends Component {
                 {this.state.pageOfItems.map((product) => (
                   <div className="col-lg-4 col-md-6" key={product.productId}>
                     {this.props.match.params.userId ===
-                    localStorage.getItem("userId") ? (
+                    localStorage.getItem("userId") || localStorage.getItem("role") === Admin  ? (
                       <CardHeader
                         action={
                           <UncontrolledDropdown>

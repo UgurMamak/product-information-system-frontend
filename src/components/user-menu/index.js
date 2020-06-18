@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Admin, User, Operator } from "../../helpers/role";
+import { Admin} from "../../helpers/role";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PersonIcon from "@material-ui/icons/Person";
@@ -18,11 +18,13 @@ import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 import PeopleIcon from "@material-ui/icons/People";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
+
 //actions
 import * as userActions from "../../redux/user/userActions";
 class LeftNav extends Component {
   state = {
     left: false,
+    right: false,
   };
 
   toggleDrawer = (anchor, open) => (event) => {
@@ -43,25 +45,22 @@ class LeftNav extends Component {
     >
       <List>
         <ListItem button key={""}>
-          <Link to={"/profile/" + localStorage.getItem("userId")}>
+          <a href={"/profile/" + localStorage.getItem("userId")}>
             <ListItemIcon>
               <PersonIcon fontSize="default" />
             </ListItemIcon>
             Profil Sayfası
-          </Link>
+          </a>
         </ListItem>
 
         <ListItem button key={"productadd"}>
-              <Link to="/ProductAdd">
-                <ListItemIcon>
-                  <AddIcon fontSize="default" />
-                </ListItemIcon>
-                Ürün Ekle
-              </Link>
-            </ListItem>
-      
-     
-
+          <Link to="/ProductAdd">
+            <ListItemIcon>
+              <AddIcon fontSize="default" />
+            </ListItemIcon>
+            Ürün Ekle
+          </Link>
+        </ListItem>
 
         {localStorage.getItem("role") === Admin ? (
           <div>
@@ -122,7 +121,6 @@ class LeftNav extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     this.props.actions.resetLoginState();
-    //setAuthorizationToken(false);
     return <Redirect to="/login" />;
   };
 

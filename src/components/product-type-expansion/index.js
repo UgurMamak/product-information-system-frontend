@@ -36,7 +36,7 @@ class index extends Component {
   };
   render() {
     const typeList = [];
-    const item = this.props.typeReducer.productType.map((type) =>
+    this.props.typeReducer.productType.map((type) =>
       typeList.push(
         <li className="filter-list" key={type.id}>
           <FormControlLabel

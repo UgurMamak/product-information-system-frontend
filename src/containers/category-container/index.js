@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import InputBase from "@material-ui/core/InputBase";
+
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 import CategoryExpansion from "../../components/category-expansion";
 import ProductTypeExpansion from "../../components/product-type-expansion";
 
@@ -8,21 +12,46 @@ import * as ProductCartActions from "../../redux/product-cart/productCartActions
 //components
 import ProductCart from "../../components/product-cart";
 import Pagination from "../../components/paginiton/Paginition";
-import UserMenu from "../../components/user-menu"
+import UserMenu from "../../components/user-menu";
 class index extends Component {
   constructor() {
     super();
     this.state = {
       pageOfItems: [],
+      items: [],
     };
     this.onChangePage = this.onChangePage.bind(this);
   }
   componentDidMount() {
     this.props.actions.getProductCart();
   }
-    
+
   onChangePage(pageOfItems) {
     this.setState({ pageOfItems: pageOfItems });
+  }
+  searchSpace = (event) => {
+    /*
+    let keyword = event.target.value;
+    this.setState({ search: keyword });
+*/
+    let updateList = this.props.productCart.popularProduct;
+    updateList = updateList.filter((data) => {
+      return (
+        data.productName
+          .toLowerCase()
+          .search(event.target.value.toLowerCase()) !== -1
+      );
+    });
+
+    this.setState({
+      items: updateList,
+    });
+  };
+
+  componentWillMount() {
+    this.setState({
+      items: this.props.productCart.popularProduct,
+    });
   }
   render() {
     return (
@@ -42,12 +71,21 @@ class index extends Component {
               </div>
             </div>
           </div>
-        </section> 
-        {localStorage.getItem("userId")!==null?<UserMenu/>:""}
-        <br/>
+        </section>
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : ""}
+        <br />
         <div className="container">
           <div className="row">
             <div className="col-xl-3 col-lg-4 col-md-5">
+              <InputBase
+                name="productName"
+                id="productName"
+                placeholder="Ürün aramak için..."
+                onChange={(e) => this.searchSpace(e)}
+              />
+              <IconButton type="submit" aria-label="search">
+                <SearchIcon />
+              </IconButton>
               <CategoryExpansion />
               <ProductTypeExpansion />
             </div>
@@ -62,10 +100,14 @@ class index extends Component {
                 </div>
               </section>
               <Pagination
-                    //items={this.state.exampleItems}
-                    items={this.props.productCart.popularProduct}
-                    onChangePage={this.onChangePage}
-                  /> 
+                items={
+                  this.state.items.length === 0
+                    ? this.props.productCart.popularProduct
+                    : this.state.items
+                }
+                // items={this.props.productCart.popularProduct}
+                onChangePage={this.onChangePage}
+              />
             </div>
           </div>
         </div>

@@ -40,5 +40,9 @@ img{
   top: 20px;
   @icnlude transition; }
   
-
-  
+.searcText{
+  background: -webkit-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: -moz-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: -o-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+}

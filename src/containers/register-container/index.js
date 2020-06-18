@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { User } from "../../helpers/role";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Alert, AlertTitle } from "@material-ui/lab";

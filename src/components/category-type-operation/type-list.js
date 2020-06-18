@@ -9,11 +9,11 @@ import Select from "@material-ui/core/Select";
 
 import * as TypeActions from "../../redux/product-type/productTypeActions";
 class TypeList extends Component {
-    state = {
-        selectedValue: "",
-        open: false,
-        control: false,
-      };
+  state = {
+    selectedValue: "",
+    open: false,
+    control: false,
+  };
   componentDidMount() {
     this.props.actions.getType();
   }
@@ -29,51 +29,50 @@ class TypeList extends Component {
     await this.setState({ selectedValue: event.target.value });
   };
 
-
   render() {
     console.log("getType", this.props.types.deleteTypeStatus);
     return (
       <div>
-      <div className="col-md-12 form-group">
-        {this.props.deleteReducer.deleteTypeStatus === 1
-          ? window.location.reload()
-          : ""}
+        <div className="col-md-12 form-group">
+          {this.props.deleteReducer.deleteTypeStatus === 1
+            ? window.location.reload()
+            : ""}
           {this.props.deleteReducer.deleteTypeStatus === 0 ? (
-          <Alert severity="error">
-            <AlertTitle>UYARI</AlertTitle>
-            {this.props.deleteReducer.message}
-          </Alert>
-        ) : (
-          ""
-        )}
-        <FormControl
-          variant="outlined"
-          className="col-md-12 form-group"
-          size="small"
-        >
-          <InputLabel id="demo-simple-select-outlined-label">
-            Ürün tipleri
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={this.state.selectedValue}
-            onChange={(event) => this.selectType(event)}
-            label={this.props.label}
+            <Alert severity="error">
+              <AlertTitle>UYARI</AlertTitle>
+              {this.props.deleteReducer.message}
+            </Alert>
+          ) : (
+            ""
+          )}
+          <FormControl
+            variant="outlined"
+            className="col-md-12 form-group"
+            size="small"
           >
-            {this.props.types.productType.map((type) => (
-              <MenuItem key={type.id} value={type.id}>
-                {type.typeName}
-              </MenuItem>
-            ))} 
-          </Select>
-        </FormControl>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Ürün tipleri
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={this.state.selectedValue}
+              onChange={(event) => this.selectType(event)}
+              label={this.props.label}
+            >
+              {this.props.types.productType.map((type) => (
+                <MenuItem key={type.id} value={type.id}>
+                  {type.typeName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="col-md-12 form-group">
-        <button onClick={this.typeDelete} className="primary-btn">
-          Sil
-        </button>
-      </div>
+          <button onClick={this.typeDelete} className="primary-btn">
+            Sil
+          </button>
+        </div>
       </div>
     );
   }

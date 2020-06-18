@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import ImageIcon from "@material-ui/icons/Image";
 export default class index extends Component {

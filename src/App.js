@@ -25,7 +25,7 @@ import Notfound from "./components/common/not-found"
 import ProductAdd from "./components/product-add"
 import ProductUpdate from "./components/product-update"
 import Deneme from "./components/deneme/"
-
+//import PrivateRoute from "./components/common/private-route";
 import CategoryTypeOperation from "./components/category-type-operation"
 
 export default class App extends Component {
@@ -43,11 +43,10 @@ export default class App extends Component {
         <Route exact path="/category" component={CategoryContainer}/>
         <Route exact path="/category/:categoryId" component={CategoryContainer}/>
         <Route exact path="/profile/:userId" component={UserProfileContainer}/>
+        
         <Route exact path="/productAdd" component={ProductAdd}/>
         <Route exact path="/productUpdate/:productId" component={ProductUpdate}/>
-
         <Route exact path="/categoryOperation" component={CategoryTypeOperation}/>
-
         <Route exact path="/userUpdate/:userId" component={UserOperationContainer}/>
         
         <Route exact path="/deneme" component={Deneme}/>
