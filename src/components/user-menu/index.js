@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Admin} from "../../helpers/role";
+import { Admin } from "../../helpers/role";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PersonIcon from "@material-ui/icons/Person";
@@ -64,39 +64,12 @@ class LeftNav extends Component {
 
         {localStorage.getItem("role") === Admin ? (
           <div>
-            <ListItem button key={"confirmpost"}>
-              <Link to="/confirmPostPage">
-                <ListItemIcon>
-                  <HourglassEmptyIcon fontSize="default" />
-                </ListItemIcon>
-                Onay Bekleyen Postlar
-              </Link>
-            </ListItem>
-
-            <ListItem button key={"adminregister"}>
-              <Link to="/AdminRegister">
-                <ListItemIcon>
-                  <GroupAddIcon fontSize="default" />
-                </ListItemIcon>
-                Üye Ekle
-              </Link>
-            </ListItem>
-
             <ListItem button key={"kategori"}>
               <Link to="/categoryOperation">
                 <ListItemIcon>
                   <SpellcheckIcon fontSize="default" />
                 </ListItemIcon>
                 Kategori İşlemleri
-              </Link>
-            </ListItem>
-
-            <ListItem button key={"user"}>
-              <Link to="/alluser">
-                <ListItemIcon>
-                  <PeopleIcon fontSize="default" />
-                </ListItemIcon>
-                Kayıtlı Kulanıcılar
               </Link>
             </ListItem>
           </div>
@@ -129,7 +102,7 @@ class LeftNav extends Component {
       <div style={{ backgroundColor: "#ffba00" }}>
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
-            <Button size="small" onClick={this.toggleDrawer(anchor, true)}>
+            <Button size="small" onClick={this.toggleDrawer(anchor, true)} >
               <MenuIcon color="primary" fontSize="default" />
             </Button>
             <Drawer

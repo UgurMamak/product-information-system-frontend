@@ -30,10 +30,10 @@ class index extends Component {
       <header className="header_area sticky-header">
         <div className="main_menu">
           <nav className="navbar navbar-expand-lg navbar-light main_box">
-            <div className="container">
-              <a className="navbar-brand logo_h" href="index.html">
-                <img src="img/logo.png" alt="" />
-                LOGO
+            <div className="container">      
+              <a className="navbar-brand logo_h" href="/home">
+              <img src="template2/logo.png" style={{"height":"70px","width":"150px"}} alt="" />
+                
               </a>
               <button
                 className="navbar-toggler"

@@ -134,6 +134,7 @@ class index extends Component {
             <div className="row justify-content-center">
               <div className="col-lg-6 text-center">
                 <div className="section-title">
+                 <br/> 
                   <h1>En Popüler Ürünler</h1>
                 </div>
               </div>

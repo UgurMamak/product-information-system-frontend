@@ -14,13 +14,18 @@ export default class index extends Component {
           <div className="container">
             <div className="tracking_box_inner">
               <div className="row tracking_form">
-                <div className="col-md-6 form-group">
+              
+                <div className="col-md-12 form-group">
+                  <h4>Kategori İşlemleri</h4><br/>
                   <CategoryList />
                   <br />
                   <br />
                   <CategoryAdd />
                 </div>
-                <div className="col-md-6 form-group">
+               
+                <div className="col-md-12 form-group">
+                <br/><br/><br/>
+                <h4>Ürün Tipi İşlemleri</h4><br/>
                   <TypeList />
                   <br />
                   <br />
