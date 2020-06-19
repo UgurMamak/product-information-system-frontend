@@ -123,7 +123,7 @@ class index extends Component {
         <section className="banner-area organic-breadcrumb">
           <div className="container">
             <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-              <div className="col-first"></div>
+              <div className="col-first"> <h1>Anasayfa</h1></div>
             </div>
           </div>
         </section>

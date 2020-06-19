@@ -16,7 +16,7 @@ import AlertDialog from "../../components/alert-dialog";
 import UserMenu from "../../components/user-menu";
 import * as ProductCartActions from "../../redux/product-cart/productCartActions";
 import * as ProductActions from "../../redux/product/productActions";
-import {
+import { 
   UncontrolledDropdown,
   DropdownToggle,
   DropdownItem,
@@ -97,10 +97,11 @@ class index extends Component {
                         action={
                           <UncontrolledDropdown>
                             <DropdownToggle tag="a" className="nav-link">
-                              <MoreVertIcon />
+                              <MoreVertIcon style={{"cursor":"pointer"}} />
                             </DropdownToggle>
                             <DropdownMenu size="sm">
                               <DropdownItem
+                              style={{"cursor":"pointer"}}
                                 onClick={() =>
                                   this.deleteproduct(product.productId)
                                 }
@@ -117,7 +118,7 @@ class index extends Component {
                           </UncontrolledDropdown>
                         }
                         subheader={product.created}
-                      />
+                      /> 
                     ) : (
                       ""
                     )}

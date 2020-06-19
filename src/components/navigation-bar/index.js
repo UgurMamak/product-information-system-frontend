@@ -54,16 +54,17 @@ class index extends Component {
                 id="navbarSupportedContent"
               >
                 <ul className="nav navbar-nav menu_nav ml-auto">
-                  <li className="nav-item active">
-                    <Link className="nav-link" to="/home">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/home">
                       Anasayfa
-                    </Link>
+                    </a>
                   </li>
+                 
 
                   <li className="nav-item">
-                    <Link className="nav-link" to="/category">
+                    <a className="nav-link" href="/category">
                       Kategoriler
-                    </Link>
+                    </a>
                   </li>
 
                   <li className="nav-item">

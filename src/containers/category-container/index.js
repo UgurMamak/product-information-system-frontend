@@ -60,7 +60,7 @@ class index extends Component {
           <div className="container">
             <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
               <div className="col-first">
-                <h1>Kategoriler</h1>
+                <h1>Kategoriler</h1> 
                 <nav className="d-flex align-items-center">
                   <a href="/home">
                     Anasayfa

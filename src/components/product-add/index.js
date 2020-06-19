@@ -209,7 +209,7 @@ class index extends Component {
                     className="form-control"
                     name="content"
                     id="content"
-                    rows={2}
+                    rows={6}
                     placeholder="ürün açıklaması"
                     defaultValue={""}
                     onChange={this.handleChange}

@@ -14,8 +14,8 @@ export default class index extends Component {
             <div className="col-first">
               <h1>Giriş Yap/Üye Ol</h1>
               <nav className="d-flex align-items-center">
-                <a href="index.html">Anasayfa<span className="lnr lnr-arrow-right" /></a>
-                <a href="category.html">Giriş Yap/Üye Ol</a>
+                <a href="/home">Anasayfa<span className="lnr lnr-arrow-right" /></a>
+                <a href="/login">Giriş Yap/Üye Ol</a>
               </nav>
             </div>
           </div>

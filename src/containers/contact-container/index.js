@@ -11,11 +11,11 @@ export default class index extends Component {
               <div className="col-first">
                 <h1>İLETİŞİM</h1>
                 <nav className="d-flex align-items-center">
-                  <a href="index.html">
+                  <a href="/home">
                     Anasayfa
                     <span className="lnr lnr-arrow-right" />
                   </a>
-                  <a href="category.html">iletişim</a>
+                  <a href="/contact">iletişim</a>
                 </nav>
               </div>
             </div>

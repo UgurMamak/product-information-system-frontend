@@ -7,6 +7,7 @@ import SaveCategoryReducer from "./category/saveCategoryReducer"
 import ProductCartReducer from "./product-cart/productCartReducer"
 //Comment
 import CommentReducer from "./comment/commentReducer" 
+import  CommentUpdateReducer from "./comment/commentUpdateReducer"
 
 //commentLike
 import CommentLikeReducer from "./comment-like/commentLikeReducer"
@@ -49,9 +50,10 @@ const rootReducer = combineReducers({
     LikeReducer,
     
     CommentReducer,
-    ProductPointReducer,
+    CommentUpdateReducer,
     CommentLikeReducer,
-
+    
+    ProductPointReducer,
     ProductTypeReducer,
     DeleteTypeReducer,
     SaveTypeReducer,
