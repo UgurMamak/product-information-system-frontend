@@ -17,15 +17,15 @@ import FooterContainer from "./containers/footer-container"
 import ProductDetailContainer from "./containers/product-detail-container/"
 import CategoryContainer from "./containers/category-container"
 import UserProfileContainer from "./containers/user-profile-container"
-
 import UserOperationContainer from "./containers/user-update-container"
+import AdminPanelContainer from "./containers/admin-panel-container"
 
 //component
 import Notfound from "./components/common/not-found"
 import ProductAdd from "./components/product-add"
 import ProductUpdate from "./components/product-update"
 import Deneme from "./components/deneme/"
-//import PrivateRoute from "./components/common/private-route";
+import PrivateRoute from "./components/common/private-route";
 import CategoryTypeOperation from "./components/category-type-operation"
 
 export default class App extends Component {
@@ -44,10 +44,11 @@ export default class App extends Component {
         <Route exact path="/category/:categoryId" component={CategoryContainer}/>
         <Route exact path="/profile/:userId" component={UserProfileContainer}/>
         
-        <Route exact path="/productAdd" component={ProductAdd}/>
-        <Route exact path="/productUpdate/:productId" component={ProductUpdate}/>
-        <Route exact path="/categoryOperation" component={CategoryTypeOperation}/>
-        <Route exact path="/userUpdate/:userId" component={UserOperationContainer}/>
+        <PrivateRoute exact path="/productAdd" component={ProductAdd}/>
+        <PrivateRoute exact path="/productUpdate/:productId" component={ProductUpdate}/>
+        <PrivateRoute exact path="/categoryOperation" component={CategoryTypeOperation}/>
+        <PrivateRoute exact path="/userUpdate/:userId" component={UserOperationContainer}/>
+        <PrivateRoute exact path="/adminPanel" component={AdminPanelContainer}/>
         
         <Route exact path="/deneme" component={Deneme}/>
         <Route component={Notfound} />

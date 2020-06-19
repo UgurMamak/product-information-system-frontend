@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Admin } from "../../helpers/role";
+import { Admin, Operator } from "../../helpers/role";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PersonIcon from "@material-ui/icons/Person";
@@ -62,7 +62,8 @@ class LeftNav extends Component {
           </Link>
         </ListItem>
 
-        {localStorage.getItem("role") === Admin ? (
+        {localStorage.getItem("role") === Admin ||
+        localStorage.getItem("role") === Operator ? (
           <div>
             <ListItem button key={"kategori"}>
               <Link to="/categoryOperation">
@@ -76,6 +77,20 @@ class LeftNav extends Component {
         ) : (
           <div />
         )}
+
+        {localStorage.getItem("role") === Admin ? (
+          <ListItem button key={"kategori"}>
+            <Link to="/adminPanel">
+              <ListItemIcon>
+                <GroupAddIcon fontSize="default" />
+              </ListItemIcon>
+              Üyeler
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+
         <Divider />
         <ListItem button key={"denemekey"}>
           <Link to="" onClick={this.logout}>
@@ -102,7 +117,7 @@ class LeftNav extends Component {
       <div style={{ backgroundColor: "#ffba00" }}>
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
-            <Button size="small" onClick={this.toggleDrawer(anchor, true)} >
+            <Button size="small" onClick={this.toggleDrawer(anchor, true)}>
               <MenuIcon color="primary" fontSize="default" />
             </Button>
             <Drawer

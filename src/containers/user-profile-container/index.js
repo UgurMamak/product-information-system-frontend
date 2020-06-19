@@ -16,14 +16,12 @@ import AlertDialog from "../../components/alert-dialog";
 import UserMenu from "../../components/user-menu";
 import * as ProductCartActions from "../../redux/product-cart/productCartActions";
 import * as ProductActions from "../../redux/product/productActions";
-import { 
+import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
- 
 } from "reactstrap";
-
 
 class index extends Component {
   constructor() {
@@ -38,7 +36,6 @@ class index extends Component {
     this.onChangePage = this.onChangePage.bind(this);
   }
   componentDidMount() {
-    
     this.props.actions.getProductCart(this.props.match.params.userId);
   }
   onChangePage(pageOfItems) {
@@ -78,11 +75,7 @@ class index extends Component {
       <div>
         <section className="banner-area organic-breadcrumb" />
 
-        {localStorage.getItem("userId")!==null ? (
-          <UserMenu />
-        ) : (
-          <div />
-        )}
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : <div />}
 
         <section className="tracking_box_area section_gap">
           <div className="container">
@@ -92,16 +85,17 @@ class index extends Component {
                 {this.state.pageOfItems.map((product) => (
                   <div className="col-lg-4 col-md-6" key={product.productId}>
                     {this.props.match.params.userId ===
-                    localStorage.getItem("userId") || localStorage.getItem("role") === Admin  ? (
+                      localStorage.getItem("userId") ||
+                    localStorage.getItem("role") === Admin ? (
                       <CardHeader
                         action={
                           <UncontrolledDropdown>
                             <DropdownToggle tag="a" className="nav-link">
-                              <MoreVertIcon style={{"cursor":"pointer"}} />
+                              <MoreVertIcon style={{ cursor: "pointer" }} />
                             </DropdownToggle>
                             <DropdownMenu size="sm">
                               <DropdownItem
-                              style={{"cursor":"pointer"}}
+                                style={{ cursor: "pointer" }}
                                 onClick={() =>
                                   this.deleteproduct(product.productId)
                                 }
@@ -118,7 +112,7 @@ class index extends Component {
                           </UncontrolledDropdown>
                         }
                         subheader={product.created}
-                      /> 
+                      />
                     ) : (
                       ""
                     )}

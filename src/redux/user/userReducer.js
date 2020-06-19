@@ -12,6 +12,11 @@ export default function UserReducer(state = initialState, action) {
         userStatus: 1,
         userData:action.payload
       };
+      case actionTypes.GET_ALLUSER_SUCCESS:
+      return {
+        userStatus: 1,
+        userData:action.payload
+      };
     default:
       return state;
   }
