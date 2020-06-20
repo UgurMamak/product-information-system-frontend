@@ -104,11 +104,7 @@ class index extends Component {
                       value="1"
                       onClick={this.sharePost}
                     />
-                    <Tab
-                      onClick={this.onayBekleyen}
-                      label="Kullanıcı Ekle"
-                      value="2"
-                    />
+                    
                   </TabList>
                 </div>
 
