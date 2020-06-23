@@ -25,8 +25,12 @@ import Notfound from "./components/common/not-found"
 import ProductAdd from "./components/product-add"
 import ProductUpdate from "./components/product-update"
 import Deneme from "./components/deneme/"
-import PrivateRoute from "./components/common/private-route";
 import CategoryTypeOperation from "./components/category-type-operation"
+
+//ROUTE
+import AdminRoute from "./components/common/admin-route"//sadece adminin yapabileceği işlemler
+import PrivateRoute from "./components/common/private-route"; //giriş yapmak yeterli
+import SecondaryRoute from "./components/common/secondary-route" //admin veya operator 
 
 export default class App extends Component {
   render() {
@@ -46,14 +50,14 @@ export default class App extends Component {
         
         <PrivateRoute exact path="/productAdd" component={ProductAdd}/>
         <PrivateRoute exact path="/productUpdate/:productId" component={ProductUpdate}/>
-        <PrivateRoute exact path="/categoryOperation" component={CategoryTypeOperation}/>
+        <SecondaryRoute exact path="/categoryOperation" component={CategoryTypeOperation}/>
         <PrivateRoute exact path="/userUpdate/:userId" component={UserOperationContainer}/>
-        <PrivateRoute exact path="/adminPanel" component={AdminPanelContainer}/>
+        <AdminRoute exact path="/adminPanel" component={AdminPanelContainer}/>
         
-        <Route exact path="/deneme" component={Deneme}/>
+        
         <Route component={Notfound} />
         </Switch>
-        <FooterContainer/>
+        <FooterContainer/> 
       </div>
     )
   }

@@ -10,7 +10,7 @@ import Chip from "@material-ui/core/Chip";
 import Image from "../product-add/image";
 import CategoryChecked from "../product-add/category-checked"
 import TypeSelect from "../product-add/type-select";
-
+import UserMenu from "../user-menu"
 import * as ProductActions from "../../redux/product/productActions";
 import * as ProductCartActions from "../../redux/product-cart/productCartActions"
 
@@ -228,6 +228,7 @@ class index extends Component {
     return (
       <div>
         <section className="banner-area organic-breadcrumb" />
+        {localStorage.getItem("userId") !== null ? <UserMenu /> : ""}
         {this.props.updateReducer.updateStatus === 1 ? (
           window.location.reload()
         ) : (
@@ -267,7 +268,7 @@ class index extends Component {
           </div>
         </div>
 
-        <section className="tracking_box_area section_gap">
+        <section >
           <div className="container">
             <div className="tracking_box_inner">
 
@@ -318,12 +319,13 @@ class index extends Component {
                     {product.productCategoryDtos.map((category) => (
                       <Chip
                         key={category.categoryId}
-                        icon={<DeleteIcon />}
+                        icon={<DeleteIcon style={{"color":"white"}} />}
                         label={category.categoryName}
+                        style={{ color: "white", "backgroundColor":"#ffba00"}}
                         onDelete={() =>
                           this.deleteCategory(product.productId, category.categoryId)
                         }
-                        color="secondary"
+                        
                         size="small"
                       />
                     ))}             

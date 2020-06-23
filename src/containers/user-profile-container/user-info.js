@@ -40,8 +40,9 @@ class userinfo extends Component {
                       size="medium"
                       aria-label="upload picture"
                       component="span"
+                      style={{ color: "#ffba00" }}
                     >
-                      <SettingsIcon />
+                      <SettingsIcon    /> 
                       Ayarlar
                     </IconButton>
                   </Link>

@@ -16,6 +16,9 @@ import * as UserActions from "../../redux/user/userActions";
 import UserList from "./user-list";
 import UserMenu from "../../components/user-menu";
 import InputBase from "@material-ui/core/InputBase";
+import { Admin } from "../../helpers/role";
+import { Redirect } from "react-router-dom";
+import Notfound from "../../components/common/not-found";
 class index extends Component {
   constructor() {
     super();
@@ -104,18 +107,17 @@ class index extends Component {
                       value="1"
                       onClick={this.sharePost}
                     />
-                    
                   </TabList>
                 </div>
 
                 <TabPanel value="1">
                   <div className="row">
-                  <InputBase
-                    name="productName" 
-                    id="productName"
-                    placeholder="Ürün aramak için..."
-                    onChange={(e) => this.searchSpace(e)}
-                  />
+                    <InputBase
+                      name="productName"
+                      id="productName"
+                      placeholder="Ürün aramak için..."
+                      onChange={(e) => this.searchSpace(e)}
+                    />
                     <TableContainer component={Paper}>
                       <Table aria-label="simple table">
                         <TableHead>

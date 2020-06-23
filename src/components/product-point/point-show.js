@@ -21,13 +21,11 @@ class PointShow extends Component {
     );
   }
 }
-
 function mapStateToProps(state) {
   return {
     productPointReducer: state.ProductPointReducer,
   };
 }
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
@@ -39,5 +37,4 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(PointShow);

@@ -25,22 +25,29 @@ export default class index extends Component {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
+        <DialogTitle id="alert-dialog-title">
+          {"YORUM GÜNCELLE"}
+        </DialogTitle>
+
         <DialogContent>
-          <form className="row contact_form">
-            <div className="col-md-12">
-              <div className="form-group">
-                <textarea
-                  className="form-control"
-                  name="content"
-                  id="content"
-                  rows={1}
-                  placeholder="içerik"
-                  defaultValue={this.props.content}
-                  onChange={this.handleChange}
-                />
+          <DialogContentText id="alert-dialog-description">
+            <form className="row contact_form">
+              <div className="col-md-12">
+                <div className="form-group">
+                  <textarea
+                    className="form-control"
+                    name="content"
+                    id="content"
+                    rows={6}
+                    placeholder="içerik"
+                    defaultValue={this.props.content}
+                    onChange={this.handleChange}
+                    style={{"width":"550px"}}
+                  />
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.disAgreeUpdateProduct} color="primary">

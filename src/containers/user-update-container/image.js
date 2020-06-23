@@ -22,7 +22,7 @@ export default class Image extends Component {
           <input
             accept="image/*"
             id="icon-button-file"
-            onChange={this.props.handleFileUpload}
+            onChange={this.props.handleFileUpload} 
             style={{ display: "none" }}
             type="file"
           />
