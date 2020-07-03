@@ -24,17 +24,19 @@ class index extends Component {
   };
 
   handleSave = async (event) => {
-    if (this.state.content !== "") {
-      this.props.actions.createComment({
-        content: this.state.content,
-        userId:localStorage.getItem("userId"),
-        productId: this.props.productId,
-      }); 
-      this.setState({ open: true });
-    } else {
-      this.setState({ control: true, controlMessage: "İçeriği doldurunuz." });
+    if (localStorage.getItem("userId") !== null) {
+      if (this.state.content !== "") {
+        this.props.actions.createComment({
+          content: this.state.content,
+          userId: localStorage.getItem("userId"),
+          productId: this.props.productId,
+        });
+        this.setState({ open: true });
+      } else {
+        this.setState({ control: true, controlMessage: "İçeriği doldurunuz." });
+      }
+      event.preventDefault();
     }
-    event.preventDefault();
   };
 
   handleClose = (event, reason) => {
@@ -47,10 +49,10 @@ class index extends Component {
 
   render() {
     return (
-      <div className="col-lg-12" > 
+      <div className="col-lg-12">
         <div className="review_box">
           <h4>Yorum Ekle</h4>
-          
+
           {this.state.control === true ? (
             <Alert severity="error">
               <AlertTitle>UYARI</AlertTitle>

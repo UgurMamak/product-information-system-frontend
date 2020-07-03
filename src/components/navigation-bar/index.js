@@ -79,11 +79,7 @@ class index extends Component {
                       <span className="ti-user" />
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <button className="search">
-                      <span className="lnr lnr-magnifier" id="search" />
-                    </button>
-                  </li>
+               
                 </ul>
               </div>
             </div>
